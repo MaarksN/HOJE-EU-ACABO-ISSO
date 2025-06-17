@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Mapeando os Campeões: Nossos Clientes Ideais (ICPS & Personas)</title>
+    <!-- Links de fontes e ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Biblioteca de animação AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Variáveis de Cores e Fontes (Consolidadas e Ajustadas) */
+        :root {
+            --aa-green: #16B097;
+            --aa-dark-blue: #1C2E42;
+            --aa-light-gray: #AEB0B2;
+            --aa-medium-gray: #6c7a89;
+            --aa-white: #FFFFFF;
+            --aa-black: #000000;
+            --aa-green-darker: #0F8A7E;
+            --aa-green-text-dark-theme: #2DD4BF;
+            --aa-green-lighter: #D2F3EC;
+            --aa-green-pastel: #f0fdfa;
+            --aa-dark-blue-lighter: #2C4A6B;
+
+            --arremaq-orange: #FF8C00;
+            --arremaq-orange-darker: #D97706;
+            --arremaq-orange-text-dark-theme: #FDBA74;
+            --arremaq-orange-lighter: #FFD073;
+            --arremaq-orange-pastel: #fffbeb;
+            --arremaq-orange-darkest: #6b3e00;
+
+            --problem-platform-color: #D32F2F;
+            --problem-platform-border: #B71C1C;
+
+            --aa-green-darkest: #17575c;
+            --aa-shiny-gray-light: #E5E7EB;
+            --aa-shiny-gray-dark: #374151;
+
+            /* Cores específicas do Playbook */
+            --brand-primary-accent-portal: var(--aa-green);
+
+            /* Fontes */
+            --font-headings-cover: 'Manrope', sans-serif;
+            --font-body-cover: 'Manrope', sans-serif;
+            --font-primary-portal: 'Manrope', sans-serif;
+            --font-headings-portal: 'Sora', sans-serif;
+            --font-special-animation: 'Poppins', sans-serif;
+
+            /* Fundos */
+            --bg-main-light: var(--aa-green-pastel);
+            --bg-main-dark: #0a121c;
+            --bg-content-light-portal: var(--aa-white);
+            --bg-content-dark-portal: #1e293b;
+            --bg-cards-section-light: #f0f4f8;
+            --bg-cards-section-dark: #111827;
+
+            /* Textos */
+            --text-headings-light-portal: var(--aa-dark-blue);
+            --text-headings-dark-portal: var(--aa-green-lighter);
+            --text-body-light-portal: #334155;
+            --text-body-dark-portal: #cbd5e1;
+            --text-muted-light-portal: #616161;
+            --text-muted-dark-portal: #94a3b8;
+
+            /* Bordas */
+            --border-color-light-portal: #e2e8f0;
+            --border-color-dark-portal: #334155;
+
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+            /* Raios de Borda */
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-full: 9999px;
+            --radius-card-portal: 1.25rem;
+            --radius-button-portal: 0.75rem;
+
+            --transition-main: .25s cubic-bezier(.4,0,.2,1);
+        }
+
+        /* Animações Keyframes */
+        @keyframes title-reveal {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes glow-border-teal {
+            0%, 100% { box-shadow: 0 0 10px rgba(22, 176, 151, 0.4), 0 0 5px rgba(22, 176, 151, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(22, 176, 151, 0.7), 0 0 10px rgba(22, 176, 151, 0.5); }
+        }
+        @keyframes glow-border-orange {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 140, 0, 0.4), 0 0 5px rgba(255, 140, 0, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 140, 0, 0.7), 0 0 10px rgba(255, 140, 0, 0.5); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0) rotate(0deg) scale(1); }
+            25% { transform: translateX(-4px) rotate(-3deg) scale(1.05); }
+            50% { transform: translateX(4px) rotate(3deg) scale(1); }
+            75% { transform: translateX(-4px) rotate(-3deg) scale(1.05); }
+        }
+        @keyframes pulse-green-border {
+            from { box-shadow: 0 0 0 0px rgba(22, 176, 151, 0.7); }
+            to { box-shadow: 0 0 0 8px rgba(22, 176, 151, 0); }
+        }
+        @keyframes pulse-orange-border {
+            from { box-shadow: 0 0 0 0px rgba(255, 140, 0, 0.7); }
+            to { box-shadow: 0 0 0 8px rgba(255, 140, 0, 0); }
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: var(--font-primary-portal);
+            font-size: 91%;
+        }
+        body {
+            margin: 0;
+            background-color: var(--bg-main-light);
+            color: var(--text-body-light-portal);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+        html[data-theme='dark'] body {
+            background-color: var(--bg-main-dark);
+            color: var(--text-body-dark-portal);
+        }
+
+        /* Estilos da Seção do Playbook */
+        .playbook-sub-section { padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 2rem); background-color: var(--bg-main-light); min-height: 100vh; }
+        html[data-theme='dark'] .playbook-sub-section { background-color: var(--bg-main-dark); }
+        .playbook-content-title, .playbook-section-subtitle {
+             animation: title-reveal 0.8s ease-out forwards;
+        }
+        .playbook-content-title { font-family: var(--font-headings-portal); font-size: clamp(1.5rem, 3.2vw, 2rem); font-weight: 700; color: var(--text-headings-light-portal); margin-bottom: 2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); text-align: center;}
+        html[data-theme='dark'] .playbook-content-title { color: var(--text-headings-dark-portal); }
+        .playbook-content-title .emoji { font-size: 1.1em; margin-right: 0.6rem; }
+
+        .playbook-section-title { font-family: var(--font-headings-portal); font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 700; color: var(--text-headings-light-portal); margin-bottom: 1.5rem; border-bottom: 2px solid var(--aa-green); padding-bottom: 0.5rem;}
+        html[data-theme='dark'] .playbook-section-title { color: var(--text-headings-dark-portal); border-bottom-color: var(--aa-green-lighter); }
+        .playbook-section-title .emoji { margin-right: 0.5rem; }
+
+        .playbook-sub-section p { margin-bottom: 1rem; line-height: 1.8; font-size: 0.85rem; color: var(--text-body-light-portal); }
+        html[data-theme='dark'] .playbook-sub-section p { color: var(--text-body-dark-portal); }
+        .sentence-emoji { margin-right: 0.4em; }
+        .title-autoarremate { color: var(--aa-green); font-weight: bold; }
+        .title-arremaq { color: var(--arremaq-orange); font-weight: bold; }
+
+        /* Estilos para os cards de ICP principais */
+        /* These cards act as containers for the new individual attribute cards */
+        .icp-features-card { transition: transform 0.3s, box-shadow 0.3s; padding: 1.5rem; border-radius: var(--radius-xl); }
+        .icp-features-card:hover { transform: translateY(-8px) scale(1.02); }
+        .icp-features-card[data-aos="fade-right"]:hover { animation: glow-border-teal 1.5s infinite ease-in-out; }
+        .icp-features-card[data-aos="fade-left"]:hover { animation: glow-border-orange 1.5s infinite ease-in-out; }
+        .icp-features-card h4 .emoji { vertical-align: middle; transition: transform 0.3s; }
+        .icp-features-card:hover h4 .emoji { transform: scale(1.2) rotate(-10deg); }
+
+
+        /* Styles for individual ICP attribute cards */
+        .icp-attribute-card {
+            background-color: var(--bg-content-light-portal); /* White/lighter background */
+            border: 1px solid var(--border-color-light-portal); /* Light border */
+            border-radius: var(--radius-xl); /* Rounded corners */
+            padding: 1.2rem;
+            display: flex;
+            align-items: flex-start; /* Align content to the top */
+            gap: 0.8rem;
+            font-size: 1rem; /* Increased font size */
+            line-height: 1.6; /* Adjusted line height for readability */
+            box-shadow: var(--shadow-sm); /* Subtle shadow */
+            transition: all 0.3s ease-in-out;
+            color: var(--text-body-light-portal); /* Main text color */
+            height: 100%; /* Ensure cards in grid have equal height */
+        }
+        html[data-theme='dark'] .icp-attribute-card {
+            background-color: var(--bg-content-dark-portal);
+            border-color: var(--border-color-dark-portal);
+            color: var(--text-body-dark-portal);
+        }
+        .icp-attribute-card:hover {
+            transform: translateY(-5px) scale(1.01); /* More pronounced lift and slight scale */
+            box-shadow: var(--shadow-md);
+        }
+        /* Specific hover colors based on ICP type */
+        .icp-attribute-card.autoarremate-icp-attr:hover {
+            border-color: var(--aa-green);
+        }
+        html[data-theme='dark'] .icp-attribute-card.autoarremate-icp-attr:hover {
+            border-color: var(--aa-green-text-dark-theme);
+        }
+        .icp-attribute-card.arremaq-icp-attr:hover {
+            border-color: var(--arremaq-orange);
+        }
+        html[data-theme='dark'] .icp-attribute-card.arremaq-icp-attr:hover {
+            border-color: var(--arremaq-orange-text-dark-theme);
+        }
+        .icp-attribute-card .icp-attribute-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            line-height: 1; /* Align icon better with text */
+            margin-top: 0.1em; /* Adjust vertical alignment */
+        }
+        /* Specific icon colors based on ICP type */
+        .icp-attribute-card.autoarremate-icp-attr .icp-attribute-icon {
+            color: var(--aa-green-darker);
+        }
+        html[data-theme='dark'] .icp-attribute-card.autoarremate-icp-attr .icp-attribute-icon {
+            color: var(--aa-green-text-dark-theme);
+        }
+        .icp-attribute-card.arremaq-icp-attr .icp-attribute-icon {
+            color: var(--arremaq-orange-darker);
+        }
+        html[data-theme='dark'] .icp-attribute-card.arremaq-icp-attr .icp-attribute-icon {
+            color: var(--arremaq-orange-text-dark-theme);
+        }
+        .icp-attribute-card strong {
+            color: var(--text-headings-light-portal); /* Use heading color for strong text */
+        }
+        html[data-theme='dark'] .icp-attribute-card strong {
+            color: var(--text-headings-dark-portal);
+        }
+        /* End of ICP attribute card styles */
+
+
+        /* Estilos para Personas */
+        .persona-card { transition: all var(--transition-main); border-width: 2px; border-color: transparent; }
+        .persona-card:hover { border-color: var(--aa-green-lighter); transform: translateY(-5px); }
+        html[data-theme="dark"] .persona-card:hover { border-color: var(--aa-green-darker); }
+        .persona-card summary::-webkit-details-marker { display: none; }
+        .persona-card summary { list-style: none; }
+        .persona-card .toggle-icon { transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .persona-card[open] .toggle-icon { transform: rotate(180deg); }
+        .persona-card .persona-image-icon { transition: transform 0.3s, box-shadow 0.3s; }
+        .persona-card summary:hover .persona-image-icon { transform: scale(1.1); box-shadow: 0 0 15px currentColor; }
+        .persona-card .persona-card-body { overflow: hidden; transition: max-height 0.7s ease-in-out, opacity 0.7s ease-in-out; max-height: 0; opacity: 0; }
+        .persona-card[open] > .persona-card-body { max-height: 1500px; opacity: 1; }
+        .persona-card-body ul { list-style-type: none; padding-left: 0; }
+        .persona-card-body li { position: relative; padding-left: 1.8em; margin-bottom: 0.5em; font-size: 0.8rem; }
+        .persona-card-body li::before { content: attr(data-emoji); position: absolute; left: 0; top: 0; font-size: 1.1em; }
+        .persona-card h5 { margin-top: 1.2rem; margin-bottom: 0.6rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* Estilos para Personas Arremaq */
+        .arremaq-persona .persona-image-icon { border-color: var(--arremaq-orange); }
+        .arremaq-persona:hover { border-color: var(--arremaq-orange-lighter); }
+        html[data-theme="dark"] .arremaq-persona:hover { border-color: var(--arremaq-orange-darker); }
+        .arremaq-persona .persona-name-title { color: var(--arremaq-orange-darker); }
+        html[data-theme='dark'] .arremaq-persona .persona-name-title { color: var(--arremaq-orange-text-dark-theme); }
+        .arremaq-persona .toggle-icon { color: var(--arremaq-orange); }
+        .arremaq-foco { background-color: var(--arremaq-orange-pastel); color: var(--arremaq-orange-darker); }
+        html[data-theme='dark'] .arremaq-foco { background-color: var(--arremaq-orange-darkest); color: var(--arremaq-orange-lighter); }
+        .arremaq-persona h5 { color: var(--arremaq-orange-darker); }
+        html[data-theme='dark'] .arremaq-persona h5 { color: var(--arremaq-orange-lighter); }
+
+        /* Botões */
+        .btn-voltar-secao { display: inline-flex; align-items: center; font-family: var(--font-headings-cover); font-weight: 600; padding: 0.6rem 1.2rem; border-radius: var(--radius-button-portal); text-decoration: none; transition: all var(--transition-main); border: 2px solid var(--aa-green); background-color: transparent; color: var(--aa-green-darker); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2rem; }
+        .btn-voltar-secao:hover { background-color: var(--aa-green-lighter); border-color: var(--aa-green-darker); transform: translateY(-2px); color: var(--aa-green-darker); }
+        html[data-theme='dark'] .btn-voltar-secao { border-color: var(--aa-green-lighter); color: var(--aa-green-lighter); }
+        html[data-theme='dark'] .btn-voltar-secao:hover { background-color: var(--aa-green-darker); border-color: var(--aa-green-lighter); color: var(--aa-white); }
+        .btn-voltar-secao i { margin-right: 0.5rem; }
+        .navigation-buttons { display: flex; justify-content: space-between; margin-top: 3rem; }
+        .btn-nav { padding: 0.7rem 1.5rem; border-radius: var(--radius-lg); font-weight: 700; transition: all var(--transition-main); border: 2px solid transparent; text-transform: uppercase; box-shadow: var(--shadow-sm); font-size: 0.8rem; }
+        .btn-nav:hover{ box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .btn-nav.prev { background-color: var(--text-muted-light-portal); color: var(--aa-white); border-color: var(--aa-dark-blue); }
+        .btn-nav.prev:hover { background-color: var(--aa-dark-blue); }
+        html[data-theme='dark'] .btn-nav.prev { background-color: var(--text-muted-dark-portal); color: var(--bg-main-dark); border-color: var(--aa-green-lighter); }
+        html[data-theme='dark'] .btn-nav.prev:hover { background-color: var(--aa-green-lighter); color: var(--aa-dark-blue); }
+        .btn-nav.next { background-color: var(--aa-green); color: var(--aa-white); border-color: var(--aa-green-darker); }
+        .btn-nav.next:hover { background-color: var(--aa-green-darker); }
+        html[data-theme='dark'] .btn-nav.next { background-color: var(--arremaq-orange-lighter); color: var(--aa-dark-blue); border-color: var(--arremaq-orange); }
+        html[data-theme='dark'] .btn-nav.next:hover { background-color: var(--arremaq-orange); color: var(--aa-white); }
+
+        /* Controles de Acessibilidade e Tema */
+        .accessibility-controls { position: fixed; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1001; }
+        .accessibility-btn { background-color: var(--bg-content-light-portal); color: var(--text-headings-light-portal); border: 1px solid var(--border-color-light-portal); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; box-shadow: var(--shadow-md); transition: all var(--transition-main); }
+        .accessibility-btn:hover { transform: scale(1.1); color: var(--aa-green); }
+        html[data-theme='dark'] .accessibility-btn { background-color: var(--bg-content-dark-portal); color: var(--text-headings-dark-portal); border-color: var(--border-color-dark-portal); }
+        html[data-theme='dark'] .accessibility-btn:hover { color: var(--aa-green-lighter); }
+        .theme-toggle-button { position: fixed; bottom: 20px; right: 20px; background-color: var(--bg-content-light-portal); color: var(--text-headings-light-portal); border: 1px solid var(--border-color-light-portal); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; box-shadow: var(--shadow-lg); z-index: 1000; transition: all var(--transition-main); }
+        .theme-toggle-button:hover { transform: scale(1.1); color: var(--aa-green); }
+        html[data-theme='dark'] .theme-toggle-button { background-color: var(--bg-content-dark-portal); color: var(--text-headings-dark-portal); border-color: var(--border-color-dark-portal); }
+        html[data-theme='dark'] .theme-toggle-button:hover { color: var(--aa-green-lighter); }
+        .hidden { display: none !important; }
+
+        /* Estilos para o Highlight Final */
+        .highlight { background-color: var(--aa-green-pastel); border-left: 5px solid var(--aa-green); padding: 1.5rem; border-radius: var(--radius-lg); margin-top: 2rem; }
+        html[data-theme='dark'] .highlight { background-color: #1a3a3a; border-left-color: var(--aa-green-lighter); }
+        .highlight-title { font-weight: bold; color: var(--aa-green-darker); display: block; margin-bottom: 0.5rem; font-size: 1.1rem; }
+        html[data-theme='dark'] .highlight-title { color: var(--aa-green-text-dark-theme); }
+
+        /* --- Estilos para Animação da Jornada da Persona --- */
+        .journey-stage {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            height: 700px;
+            background-color: var(--bg-content-light-portal);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            margin: 2rem auto;
+            /* Removed AOS data attributes here as they are handled on the section */
+        }
+        html[data-theme='dark'] .journey-stage { background-color: var(--bg-content-dark-portal); }
+        .journey-animation-area { position: relative; width: 100%; height: 100%; margin-top: 1rem; }
+        .journey-platform { position: absolute; display: flex; flex-direction: column; align-items: center; transition: all 1s ease-in-out; z-index: 10; }
+        .journey-problem-platform { left: 5%; top: 50%; transform: translateY(-50%); }
+        .journey-solution-platform { right: 5%; top: 50%; transform: translateY(-50%) scale(0.5); opacity: 0; }
+        .journey-platform-icon { width: 110px; height: 110px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.15); background-color: var(--aa-white); padding: 10px; }
+        .journey-problem-platform-icon { border: 4px solid var(--problem-platform-border); color: var(--problem-platform-color); font-size: 3rem; }
+        .journey-problem-platform-icon img, .journey-solution-platform-icon img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .journey-solution-platform-icon { border: 4px solid var(--aa-green); }
+        .journey-platform-label { font-weight: 700; font-family: var(--font-special-animation); margin-top: 0.5rem; font-size: 1.1rem; }
+        .journey-persona-container { position: absolute; display: flex; flex-direction: column; align-items: center; transition: all 1.8s cubic-bezier(0.68, -0.6, 0.27, 1.55); z-index: 5; }
+        .journey-persona-img { width: 60px; height: 60px; border-radius: 50%; background-color: #e2e8f0; background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 3px solid #a0aec0; margin-bottom: 5px; transition: border-color 0.5s ease, transform 0.3s ease; }
+        .journey-persona-container.struggling .journey-persona-img { /* Removed animation */ border-color: var(--problem-platform-color); }
+        .journey-persona-container.happy.autoarremate .journey-persona-img { border-color: var(--aa-green); /* Removed animation */ }
+        .journey-persona-container.happy.arremaq .journey-persona-img { border-color: var(--arremaq-orange); /* Removed animation */ }
+        .journey-speech-bubble { position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%); background-color: #e2e8f0; color: #2d3748; padding: 8px 12px; border-radius: 0.75rem; font-size: 0.75rem; min-width: 100px; max-width: 150px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); opacity: 0; transition: opacity 0.5s ease-in-out; white-space: normal; border: 2px solid #cbd5e1; z-index: 15; }
+        .journey-speech-bubble::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border-width: 8px; border-style: solid; border-color: #e2e8f0 transparent transparent transparent; transition: border-top-color 0.5s ease; }
+        .journey-persona-container.struggling .journey-speech-bubble { border-color: var(--problem-platform-color); background-color: #ffebee; color: var(--problem-platform-border); }
+        .journey-persona-container.struggling .journey-speech-bubble::after { border-top-color: #ffebee; }
+        .journey-persona-container.happy.autoarremate .journey-speech-bubble { border-color: var(--aa-green); background-color: var(--aa-green-lighter); color: var(--aa-green-darker); }
+        .journey-persona-container.happy.autoarremate .journey-speech-bubble::after { border-top-color: var(--aa-green-lighter); }
+        .journey-persona-container.happy.arremaq .journey-speech-bubble { border-color: var(--arremaq-orange); background-color: var(--arremaq-orange-pastel); color: var(--arremaq-orange-darker); }
+        .journey-persona-container.happy.arremaq .journey-speech-bubble::after { border-top-color: var(--arremaq-orange-pastel); }
+
+        .journey-scenario-text { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); font-size: 1rem; color: var(--text-body-light-portal); background-color: rgba(255, 255, 255, 0.85); padding: 10px 18px; border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-md); width: 90%; max-width: 600px; z-index: 20; }
+        html[data-theme='dark'] .journey-scenario-text { background-color: rgba(26, 32, 44, 0.85); color: var(--text-body-dark-portal); }
+        .journey-controls { text-align: center; margin-top: 1.5rem; }
+        .journey-btn { padding: 0.7rem 1.5rem; border: none; border-radius: var(--radius-button-portal); font-weight: 600; cursor: pointer; transition: all var(--transition-main); font-family: var(--font-special-animation); }
+        .journey-btn:hover { transform: translateY(-2px); }
+        .journey-btn:disabled { background-color: var(--aa-medium-gray); cursor: not-allowed; transform: none; }
+
+        /* Estilos para os cards de CNAE */
+        .cnae-card {
+            background-color: var(--bg-content-light-portal); /* White/lighter background */
+            border: 1px solid var(--border-color-light-portal); /* Light border */
+            border-radius: var(--radius-xl); /* Rounded corners */
+            padding: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            box-shadow: var(--shadow-sm); /* Subtle shadow */
+            transition: all 0.3s ease-in-out;
+            color: var(--text-body-light-portal); /* Main text color */
+        }
+        html[data-theme='dark'] .cnae-card {
+            background-color: var(--bg-content-dark-portal);
+            border-color: var(--border-color-dark-portal);
+            color: var(--text-body-dark-portal);
+        }
+        .cnae-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--aa-green); /* Highlight border on hover */
+        }
+        html[data-theme='dark'] .cnae-card:hover {
+            border-color: var(--aa-green-text-dark-theme);
+        }
+        .cnae-card .cnae-icon {
+            font-size: 1.8rem; /* Larger emoji/icon */
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            color: var(--aa-green-darker); /* Accent color for icon */
+        }
+        html[data-theme='dark'] .cnae-card .cnae-icon {
+            color: var(--aa-green-text-dark-theme);
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .personas-row.grid.md\:grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .journey-stage { height: 600px; padding: 1.5rem; }
+        }
+        @media (max-width: 768px) {
+            html { font-size: 84%; }
+            .playbook-content-title { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
+            .playbook-section-title { font-size: clamp(1rem, 2vw, 1.3rem); }
+            .playbook-sub-section p, .persona-card-body li { font-size: 0.75rem; }
+            /* Adjusted for new icp-attribute-card font size */
+            .icp-attribute-card { font-size: 0.95rem; padding: 1rem; }
+            .icp-attribute-card .icp-attribute-icon { font-size: 1.5rem; }
+
+            .personas-row.grid.md\:grid-cols-2, .personas-row.grid.md\:grid-cols-3 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+            .journey-stage { height: 550px; }
+            .journey-platform-icon { width: 80px; height: 80px; }
+            .journey-persona-img { width: 50px; height: 50px; }
+            .journey-speech-bubble { font-size: 0.7rem; }
+            .cnae-card { font-size: 0.85rem; padding: 1rem; }
+            .cnae-card .cnae-icon { font-size: 1.5rem; }
+        }
+         @media (max-width: 480px) {
+            html { font-size: 77%; }
+            .playbook-sub-section { padding: 1.5rem 0.8rem; }
+            .journey-stage { height: 500px; }
+         }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900">
+
+    <div class="accessibility-controls">
+        <button id="increaseFontBtn" class="accessibility-btn" aria-label="Aumentar tamanho da fonte" title="Aumentar Fonte">
+            <i class="fas fa-search-plus"></i>
+        </button>
+        <button id="decreaseFontBtn" class="accessibility-btn" aria-label="Diminuir tamanho da fonte" title="Diminuir Fonte">
+            <i class="fas fa-search-minus"></i>
+        </button>
+        <button id="readPageBtn" class="accessibility-btn" aria-label="Ler página em voz alta" title="Ler Página">
+            <i class="fas fa-volume-up"></i>
+        </button>
+    </div>
+
+    <main id="main-content">
+        <section id="playbook-sec-2-content-main" class="playbook-sub-section">
+            <div class="container mx-auto">
+                 <button class="btn-voltar-secao backToManualPitStopDetalhesBtn mb-8 text-sm">
+                    <i class="fas fa-arrow-left mr-2"></i> VOLTAR AO GUIA ESTRATÉGICO 📖
+                </button>
+
+                <h2 class="playbook-content-title text-center" style="text-transform: uppercase;">
+                    <span class="emoji">🎯</span> <strong>MAPEANDO OS CAMPEÕES: NOSSOS CLIENTES IDEAIS (ICPS & PERSONAS)!</strong>
+                </h2>
+
+                <div class="text-content-container playbook-text space-y-10 mt-8">
+
+                    <section id="porque-entender-cliente-reforged" data-aos="fade-up">
+                        <h3 class="playbook-section-title !text-center" style="text-transform: uppercase; color: var(--brand-primary-accent-portal); border-bottom: none;">
+                            <span class="emoji">🔑</span> <strong>O MAPA DA ALMA DO CLIENTE: POR QUE ESTE CONHECIMENTO É OURO PURO?</strong>
+                        </h3>
+                        <p><span class="sentence-emoji">🌍</span>No vasto e multifacetado universo das vendas, conhecer profundamente quem você almeja alcançar não é meramente uma vantagem estratégica; é a própria fundação sobre a qual se erguem os mais gloriosos impérios comerciais! <span class="sentence-emoji">💡</span>Compreender as dores latentes que afligem seus prospects, os desejos flamejantes que os impulsionam, os desafios hercúleos que enfrentam diariamente e as motivações arcanas que moldam suas decisões permite que você, nobre estrategista, forje conexões genuínas e indestrutíveis. <span class="sentence-emoji">🏆</span>Com este saber, suas ofertas ressoarão como um chamado irresistível ao destino, e você celebrará inúmeras conquistas, ouvindo o doce som do "SIM!" triunfante ecoar pelos seus salões.</p>
+                        <p><span class="sentence-emoji">📖</span>Neste capítulo crucial do nosso grimório, mergulharemos juntos nos mistérios do ICP (Ideal Customer Profile ou Perfil de Cliente Ideal – o arquétipo da empresa perfeita) e nas Personas Lendárias que dão rosto e alma aos diversos arquétipos de clientes dos reinos da <span class="title-autoarremate">Auto Arremate®</span> e <span class="title-arremaq">Arremaq®</span>. <span class="sentence-emoji">🏎️</span>Prepare-se para se tornar um mestre consumado na arte de identificar, compreender e abordar cada um desses nobres heróis com a precisão de um sábio conselheiro e a empatia de um verdadeiro aliado!</p>
+                    </section>
+
+                    <hr class="my-10 border-t-2 border-gray-200 dark:border-gray-700">
+
+                    <section id="o-que-e-icp-reforged" data-aos="fade-up">
+                        <h3 class="playbook-section-title !text-center" style="text-transform: uppercase; color: var(--brand-primary-accent-portal); border-bottom: none;">
+                            <span class="emoji">🌟</span> <strong>O ARQUÉTIPO DO CLIENTE IDEAL (ICP): FORJANDO O PERFIL DA EMPRESA PERFEITA!</strong>
+                        </h3>
+                        <p><span class="sentence-emoji">💡</span>O ICP, ou Perfil de Cliente Ideal, é uma descrição meticulosa e detalhada da empresa – ou do tipo de entidade comercial – que mais se beneficia dos seus elixires e artefatos mágicos (nossos produtos e serviços). <span class="sentence-emoji">💰</span>Consequentemente, são esses os aliados que mais valor e glória trazem aos prósperos reinos da <span class="title-autoarremate">Auto Arremate®</span> e <span class="title-arremaq">Arremaq®</span>. <span class="sentence-emoji">🛣️</span>Não se trata de uma única cidadela específica, mas sim de um conjunto de características celestiais e terrenas que definem seus melhores, mais leais e mais lucrativos parceiros de jornada.</p>
+
+                        <div class="grid md:grid-cols-2 gap-8 mt-8">
+                            <div class="icp-features-card bg-teal-50 dark:bg-teal-800/40 border border-teal-300 dark:border-teal-700 rounded-xl p-6" data-aos="fade-right" data-aos-delay="100">
+                                <h4 class="text-2xl font-bold mb-4 text-center" style="color: var(--aa-green); text-transform:uppercase;"><span class="emoji">🚗💨</span> ICP AUTO ARREMATE® <br><span class="text-sm font-normal normal-case text-gray-600 dark:text-gray-400">(Domínio dos Veículos Leves)</span></h4>
+                                <div class="grid grid-cols-1 gap-4">
+                                    <div class="icp-attribute-card autoarremate-icp-attr">
+                                        <span class="icp-attribute-icon">🏢</span>
+                                        <span><strong>Tipo de Reino (Empresa):</strong> Concessionárias de veículos (todas as bandeiras e estandartes), grandes clãs de concessionárias, frotas de locadoras com vastos exércitos de veículos, e renomados mercadores/lojistas de veículos seminovos e usados.</span>
+                                    </div>
+                                    <div class="icp-attribute-card autoarremate-icp-attr">
+                                        <span class="icp-attribute-icon">📊</span>
+                                        <span><strong>Volume de Comércio (Negócios):</strong> Reinos com alto volume de aquisição e venda de veículos, sempre em busca de otimizar o giro de seus tesouros (estoque) e a prosperidade (rentabilidade).</span>
+                                    </div>
+                                    <div class="icp-attribute-card autoarremate-icp-attr">
+                                        <span class="icp-attribute-icon">💻</span>
+                                        <span><strong>Afinidade com a Alquimia Digital (Tecnologia):</strong> Reinos que já utilizam ou estão dispostos a desbravar soluções digitais para otimizar seus rituais de avaliação, gestão e comercialização de veículos.</span>
+                                    </div>
+                                    <div class="icp-attribute-card autoarremate-icp-attr">
+                                        <span class="icp-attribute-icon">📈</span>
+                                        <span><strong>Busca pela Eficiência e Prosperidade:</strong> Aliados que anseiam por reduzir custos operacionais desnecessários, aumentar a margem de lucro em cada transação de veículos e acelerar o ciclo de suas conquistas comerciais.</span>
+                                    </div>
+                                    <div class="icp-attribute-card autoarremate-icp-attr">
+                                        <span class="icp-attribute-icon">🌐</span>
+                                        <span><strong>Visão Estratégica de Mercado Ampla:</strong> Reinos que compreendem o poder de um marketplace B2B para expandir seus domínios e ter acesso a um inventário diversificado de oportunidades.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="icp-features-card bg-orange-50 dark:bg-orange-800/40 border border-orange-300 dark:border-orange-700 rounded-xl p-6" data-aos="fade-left" data-aos-delay="200">
+                                <h4 class="text-2xl font-bold mb-4 text-center" style="color: var(--arremaq-orange); text-transform:uppercase;"><span class="emoji">🚜⚙️</span> ICP ARREMAQ® <br><span class="text-sm font-normal normal-case text-gray-600 dark:text-gray-400">(Reino das Máquinas Pesadas)</span></h4>
+                                <div class="grid grid-cols-1 gap-4">
+                                    <div class="icp-attribute-card arremaq-icp-attr">
+                                        <span class="icp-attribute-icon">🏗️</span>
+                                        <span><strong>Tipo de Domínio (Empresa):</strong> Concessionárias de titãs de aço (máquinas agrícolas, de construção), locadoras de equipamentos pesados, grandes mestres construtores, impérios do agronegócio com frotas próprias, e revendedores especializados em máquinas usadas com histórias para contar.</span>
+                                    </div>
+                                    <div class="icp-attribute-card arremaq-icp-attr">
+                                        <span class="icp-attribute-icon">⚙️</span>
+                                        <span><strong>Necessidade de Perícia Técnica:</strong> Domínios que valorizam avaliações técnicas minuciosas, transparência cristalina no histórico do equipamento e processos de negociação seguros como uma fortaleza.</span>
+                                    </div>
+                                    <div class="icp-attribute-card arremaq-icp-attr">
+                                        <span class="icp-attribute-icon">💰</span>
+                                        <span><strong>Foco em Ativos de Grande Valor:</strong> Aliados que lidam com a compra e venda de artefatos de alto valor e buscam otimizar o retorno sobre esses investimentos, transformando metal em ouro puro.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="icp-conclusion mt-8 text-center italic text-gray-600 dark:text-gray-400" data-aos="fade-up"><span class="sentence-emoji">✅</span>Identificar se um nobre prospect se encaixa em nosso ICP é o primeiro e mais crucial passo para uma prospecção verdadeiramente eficiente e honrada. <span class="sentence-emoji">🗺️</span>Isso garante que estamos dedicando nosso tempo precioso e nossa energia valorosa aos leads com o maior potencial de se tornarem parceiros de longa data, cujas alianças trarão glória e prosperidade mútua aos nossos reinos!</p>
+                    </section>
+
+                    <hr class="my-10 border-t-2 border-gray-200 dark:border-gray-700">
+
+                    <section id="cnaes-permitidos-b2b" data-aos="fade-up">
+                        <h3 class="playbook-section-title !text-center" style="text-transform: uppercase; color: var(--brand-primary-accent-portal); border-bottom: none;">
+                            <span class="emoji">📜</span> CNAEs Permitidos: A Chave para Nossos Reinos B2B!
+                        </h3>
+                        <p>
+                            <span class="sentence-emoji">🔑</span> Para garantir que nossas alianças comerciais sejam tão fortes quanto o aço e frutíferas como uma colheita abundante, focamos em empresas cujas atividades econômicas estejam diretamente alinhadas com o vibrante setor automotivo e de máquinas pesadas. Esta seção é seu guia para os códigos CNAE (Classificação Nacional de Atividades Econômicas) que abrem as portas para uma parceria de sucesso.
+                        </p>
+                        <p>
+                            <span class="sentence-emoji">🔍</span> A verificação do CNAE é a primeira e mais fundamental prova de fogo. Ela assegura que estamos conectando apenas os mais dignos e compatíveis campeões, forjando uma rede de negócios que prospera na sinergia e no propósito comum.
+                        </p>
+                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="cnae-card" data-aos="fade-up" data-aos-delay="100">
+                                <span class="cnae-icon">🚗</span>
+                                <span>45.11-1-01 - Comércio a varejo de automóveis, camionetas e utilitários novos.</span>
+                            </div>
+                            <div class="cnae-card" data-aos="fade-up" data-aos-delay="150">
+                                <span class="cnae-icon">🚙</span>
+                                <span>45.11-1-02 - Comércio a varejo de automóveis, camionetas e utilitários usados.</span>
+                            </div>
+                            <div class="cnae-card" data-aos="fade-up" data-aos-delay="200">
+                                <span class="cnae-icon">🚚</span>
+                                <span>45.11-1-03 - Comércio por atacado de automóveis, camionetas e utilitários novos e usados.</span>
+                            </div>
+                            <div class="cnae-card" data-aos="fade-up" data-aos-delay="250">
+                                <span class="cnae-icon">🚛</span>
+                                <span>45.11-1-04 - Comércio por atacado de caminhões novos e usados.</span>
+                            </div>
+                            <div class="cnae-card" data-aos="fade-up" data-aos-delay="300">
+                                <span class="cnae-icon">🚌</span>
+                                <span>45.11-1-05 - Comércio por atacado de reboques e semi-reboques novos e usados.</span>
+                            </div>
+                            <div class="cnae-card" data-aos="fade-up" data-aos-delay="350">
+                                <span class="cnae-icon">🚐</span>
+                                <span>45.11-1-06 - Comércio por atacado de ônibus e microônibus novos e usados.</span>
+                            </div>
+                            <div class="cnae-card" data-aos="fade-up" data-aos-delay="400">
+                                <span class="cnae-icon">🤝</span>
+                                <span>45.12-9-01 - Representantes comerciais e agentes do comércio de veículos automotores.</span>
+                            </div>
+                            <div class="cnae-card" data-aos="fade-up" data-aos-delay="450">
+                                <span class="cnae-icon">🔄</span>
+                                <span>45.12-9-02 - Comércio sob consignação de veículos automotores.</span>
+                            </div>
+                            <div class="cnae-card" data-aos="fade-up" data-aos-delay="500">
+                                <span class="cnae-icon">🏍️</span>
+                                <span>45.41-2-01 - Comércio por atacado de motocicletas e motonetas.</span>
+                            </div>
+                            <div class="cnae-card" data-aos="fade-up" data-aos-delay="550">
+                                <span class="cnae-icon">🛵</span>
+                                <span>45.41-2-03 - Comércio a varejo de motocicletas e motonetas novas.</span>
+                            </div>
+                            <div class="cnae-card" data-aos="fade-up" data-aos-delay="600">
+                                <span class="cnae-icon">🔧</span>
+                                <span>45.41-2-04 - Comércio a varejo de motocicletas e motonetas usadas.</span>
+                            </div>
+                            <div class="cnae-card" data-aos="fade-up" data-aos-delay="650">
+                                <span class="cnae-icon">🔑</span>
+                                <span>77.11-0-00 - Locação de automóveis sem condutor.</span>
+                            </div>
+                            <div class="cnae-card" data-aos="fade-up" data-aos-delay="700">
+                                <span class="cnae-icon">➕</span>
+                                <span>77.19-5-99 - Locação de outros meios de transporte não especificados anteriormente, sem condutor.</span>
+                            </div>
+                        </div>
+                        <p class="mt-8">
+                            <span class="sentence-emoji">🌟</span> **Atenção, Nobre Mercador!** Ao validar o CNAE de um potencial parceiro, você não está apenas marcando um item em uma lista; está confirmando a vocação e o alinhamento estratégico com o nosso ecossistema. Empresas com esses CNAEs estão prontas para embarcar em uma jornada de prosperidade e eficiência ao nosso lado.
+                        </p>
+                    </section>
+
+                    <hr class="my-10 border-t-2 border-gray-200 dark:border-gray-700">
+
+                    <section id="definindo-personas-reforged" data-aos="fade-up">
+                        <h3 class="playbook-section-title !text-center" style="text-transform: uppercase; color: var(--brand-primary-accent-portal); border-bottom: none;">
+                            <span class="emoji">🎭</span> <strong>AS FACES DA AVENTURA: CONVOCANDO NOSSAS PERSONAS LENDÁRIAS!</strong>
+                        </h3>
+                        <p><span class="sentence-emoji">👥</span>Enquanto o ICP descreve o "reino ideal" como uma entidade próspera, as Personas nos ajudam a humanizar os diversos tipos de heróis, sábios e estrategistas (os nobres decisores e influenciadores) que habitam dentro dessas cidadelas comerciais. <span class="sentence-emoji">📜</span>Elas são representações semi-fictícias, mas vividamente detalhadas e imbuídas de personalidade, dos nossos clientes típicos, forjadas com base em dados de mercado valiosos e crônicas de interações reais, como canções de gesta passadas de geração em geração. <span class="sentence-emoji">🗺️</span>Conhecer nossas Personas Lendárias nos permite adaptar nossa linguagem arcana, nossos argumentos mais persuasivos e nossa abordagem estratégica para cada audiência, falando diretamente à alma e ao coração de cada um.</p>
+                        <p class="text-center mt-4"><span class="sentence-emoji">👇</span>Abaixo, contemple os detalhes de cada uma dessas lendas vivas, cujas jornadas se cruzarão com as nossas!</p>
+
+                        <div class="personas-structure-container mt-8 space-y-10">
+                            <div class="personas-organogram-container" data-aos="fade-up">
+                                <h4 class="playbook-section-subtitle !text-center" style="text-transform: uppercase; color: var(--aa-green); margin-top:1.5em; font-size: 1.8rem !important;">
+                                    <span class="emoji">🚗💨</span> <strong>HERÓIS DO ASFALTO: PERSONAS LENDÁRIAS DA AUTO ARREMATE!</strong>
+                                </h4>
+
+                                <div class="personas-group mt-6">
+                                    <h5 class="personas-group-title" style="text-transform: uppercase; color: var(--text-headings-light-portal); font-size:1.3rem; border-bottom: 2px solid var(--border-color-light-portal); padding-bottom: 0.75rem; margin-bottom:1.5rem; text-align:center;">
+                                        <span class="emoji">🏰</span> NO REINO DAS CONCESSIONÁRIAS: ALIADOS E DESAFIOS!
+                                    </h5>
+                                    <div class="personas-row grid md:grid-cols-2 gap-8">
+                                        <details class="persona-card bg-white dark:bg-slate-800 shadow-lg rounded-xl overflow-hidden" id="persona-card-marcelo-nascimento" data-aos="zoom-in-up" data-aos-delay="100">
+                                            <summary class="persona-card-header flex items-center p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+                                                <img src="https://i.imgur.com/odoe4Qx.jpeg" alt="Marcelo Nascimento - Gerente de Vendas / Dono de Concessionária" class="persona-image-icon w-16 h-16 rounded-full mr-4 border-2 border-teal-500" onerror="this.onerror=null; this.src='https://placehold.co/64x64/E2E8F0/2D3748?text=MN';">
+                                                <span class="persona-name-title flex-grow text-lg font-bold text-teal-700 dark:text-teal-300">MARCELO NASCIMENTO</span>
+                                                <span class="toggle-icon text-teal-500 dark:text-teal-400"><i class="fas fa-chevron-down"></i></span>
+                                            </summary>
+                                            <div class="persona-foco p-2 text-xs font-semibold text-center bg-teal-100 text-teal-700 dark:bg-teal-700 dark:text-teal-100">Foco: Concessionária (Gerente/Dono)</div>
+                                            <div class="persona-card-body p-5 text-sm space-y-3">
+                                                <p class="persona-description italic"><span class="emoji">👨‍💼</span>Marcelo é o Grande Mestre de sua Concessionária, um líder experiente e incansavelmente focado em resultados grandiosos. <span class="sentence-emoji">💰</span>Busca constantemente as relíquias da rentabilidade e os feitiços da eficiência para sua operação de seminovos.</p>
+                                                <h5 class="font-semibold text-teal-600 dark:text-teal-400"><span class="emoji">🎯</span> Objetivos Principais de Sua Demanda:</h5>
+                                                <ul>
+                                                    <li data-emoji="📈">Expandir o volume de vendas de seminovos para novos reinos.</li>
+                                                    <li data-emoji="🏆">Maximizar o tesouro (lucro) em cada transação comercial.</li>
+                                                    <li data-emoji="⚙️">Otimizar o giro do estoque de artefatos (seminovos), evitando que se tornem relíquias empoeiradas.</li>
+                                                    <li data-emoji="🤝">Aprimorar a arte da avaliação e precificação dos veículos ofertados em troca.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-teal-600 dark:text-teal-400"><span class="emoji">😥</span> Dores e Desafios em Sua Jornada:</h5>
+                                                <ul>
+                                                    <li data-emoji="💸">A maldição da precificação incorreta dos veículos de troca.</li>
+                                                    <li data-emoji="⏳">Rituais de avaliação de seminovos lentos como um golem e inconsistentes como um duende travesso.</li>
+                                                    <li data-emoji="📉">Baixa rentabilidade na venda dos tesouros seminovos.</li>
+                                                    <li data-emoji="🎯">A pressão constante dos deuses do mercado para atingir metas de vendas e lucratividade.</li>
+                                                    <li data-emoji="⚔️">A concorrência acirrada no mercado de seminovos, uma verdadeira batalha de titãs.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-teal-600 dark:text-teal-400"><span class="emoji">💡</span> Como a Magia da Auto Arremate o Auxilia:</h5>
+                                                <ul>
+                                                    <li data-emoji="🚀">Transforma o departamento de seminovos em uma verdadeira Casa da Moeda, um centro de lucro e poder.</li>
+                                                    <li data-emoji="📊">Fornece artefatos místicos para avaliação precisa e padronizada (o lendário RaioX®).</li>
+                                                    <li data-emoji="🌐">Abre portais para o vasto Marketplace B2B, ampliando o alcance a uma legião de compradores.</li>
+                                                    <li data-emoji="⚙️">Conjura feitiços de agilidade para a gestão e comercialização do estoque.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-teal-600 dark:text-teal-400"><span class="emoji">🔑</span> Encantamentos (Argumentos Chave) para Conquistar Marcelo:</h5>
+                                                <ul>
+                                                    <li data-emoji="🗣️">"Nobre Mestre Marcelo, transforme sua operação de seminovos com nossa plataforma digital arcana e veja sua lucratividade ascender aos céus!"</li>
+                                                    <li data-emoji="🗣️">"Com o poder do RaioX®, padronize suas avaliações, adquira tesouros com mais sabedoria e venda-os com margens dignas de um rei!"</li>
+                                                    <li data-emoji="🗣️">"Acesse nosso Marketplace B2B, um reino com milhares de lojistas ansiosos por seus artefatos, e acelere o giro do seu estoque como um corcel alado!"</li>
+                                                </ul>
+                                            </div>
+                                        </details>
+
+                                        <details class="persona-card bg-white dark:bg-slate-800 shadow-lg rounded-xl overflow-hidden" id="persona-card-lucas-silva" data-aos="zoom-in-up" data-aos-delay="200">
+                                            <summary class="persona-card-header flex items-center p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+                                                <img src="https://i.imgur.com/0gNvzob.jpeg" alt="Lucas Silva - Comprador / Gerente de Seminovos" class="persona-image-icon w-16 h-16 rounded-full mr-4 border-2 border-sky-500" onerror="this.onerror=null; this.src='https://placehold.co/64x64/E2E8F0/2D3748?text=LS';">
+                                                <span class="persona-name-title flex-grow text-lg font-bold text-sky-700 dark:text-sky-300">LUCAS SILVA</span>
+                                                <span class="toggle-icon text-sky-500 dark:text-sky-400"><i class="fas fa-chevron-down"></i></span>
+                                            </summary>
+                                            <div class="persona-foco p-2 text-xs font-semibold text-center bg-sky-100 text-sky-700 dark:bg-sky-700 dark:text-sky-100">Foco: Concessionária (Comprador/Ger. Seminovos)</div>
+                                            <div class="persona-card-body p-5 text-sm space-y-3">
+                                                <p class="persona-description italic"><span class="emoji">👨‍💻</span>Lucas é o Mestre Avaliador, Comprador ou Gerente de Seminovos da concessionária. <span class="sentence-emoji">⚔️</span>Um guerreiro prático, analítico e detalhista, responsável por avaliar e adquirir os melhores corcéis (veículos) para o estábulo (estoque) da concessionária.</p>
+                                                <h5 class="font-semibold text-sky-600 dark:text-sky-400"><span class="emoji">🎯</span> Objetivos Principais de Sua Caçada:</h5>
+                                                <ul>
+                                                    <li data-emoji="🏆">Adquirir veículos com alto potencial de revenda e margens de lucro principescas.</li>
+                                                    <li data-emoji="🔎">Realizar avaliações com a precisão de um elfo e a rapidez de um raio.</li>
+                                                    <li data-emoji="🛡️">Minimizar os riscos arcanos em cada aquisição, evitando artefatos amaldiçoados.</li>
+                                                    <li data-emoji="📊">Manter um estábulo de seminovos atrativo, diversificado e sempre pronto para a batalha.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-sky-600 dark:text-sky-400"><span class="emoji">😥</span> Dores e Desafios em Seu Caminho:</h5>
+                                                <ul>
+                                                    <li data-emoji="⏱️">Tempo, o inimigo implacável, sempre escasso para avaliações detalhadas e meticulosas.</li>
+                                                    <li data-emoji="🧐">A dificuldade em obter o pergaminho completo sobre o histórico de cada veículo, muitas vezes envolto em névoas.</li>
+                                                    <li data-emoji="💸">A pressão constante dos Lordes para comprar bem, evitar prejuízos e encontrar verdadeiras gemas raras.</li>
+                                                    <li data-emoji="🔄">A necessidade premente de ferramentas mágicas que agilizem seu nobre trabalho de avaliação.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-sky-600 dark:text-sky-400"><span class="emoji">💡</span> Como a Alquimia da Auto Arremate o Fortalece:</h5>
+                                                <ul>
+                                                    <li data-emoji="📱">O aplicativo RaioX®, um verdadeiro olho de Thundera, para vistorias padronizadas, detalhadas e dignas de um sábio.</li>
+                                                    <li data-emoji="📋">Integração com o oráculo do histórico veicular (RaioX+®), revelando o passado de cada artefato.</li>
+                                                    <li data-emoji="📈">Acesso a uma base de dados celestial para consulta de precificação, como se consultasse os próprios astros.</li>
+                                                    <li data-emoji="🤝">Conexão direta com vendedores qualificados no grandioso marketplace, onde as oportunidades florescem.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-sky-600 dark:text-sky-400"><span class="emoji">🔑</span> Palavras de Poder (Argumentos Chave) para Lucas:</h5>
+                                                <ul>
+                                                    <li data-emoji="🗣️">"Nobre Lucas, agilize suas avaliações com a precisão do RaioX® e tenha a segurança de um paladino em suas compras!"</li>
+                                                    <li data-emoji="🗣️">"Desvende o histórico completo do veículo diretamente na avaliação, como se lesse o livro do destino!"</li>
+                                                    <li data-emoji="🗣️">"Nossa plataforma é seu aliado mais fiel para comprar melhor, com informações arcanas precisas e a rapidez de um relâmpago!"</li>
+                                                </ul>
+                                            </div>
+                                        </details>
+                                    </div>
+                                </div>
+
+                                <div class="personas-group mt-10">
+                                    <h5 class="personas-group-title" style="text-transform: uppercase; color: var(--text-headings-light-portal); font-size:1.3rem; border-bottom: 2px solid var(--border-color-light-portal); padding-bottom: 0.75rem; margin-bottom:1.5rem; text-align:center;">
+                                        <span class="emoji">🔄</span> O COMÉRCIO ENTRE REINOS (FOCO REVENDEDOR)
+                                    </h5>
+                                    <div class="personas-row grid grid-cols-1 gap-8">
+                                        <details class="persona-card bg-white dark:bg-slate-800 shadow-lg rounded-xl overflow-hidden" id="persona-card-leticia-morais" data-aos="zoom-in-up" data-aos-delay="100">
+                                            <summary class="persona-card-header flex items-center p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+                                                <img src="https://i.imgur.com/xvH943K.jpeg" alt="Leticia Morais - Proprietária de Loja de Seminovos" class="persona-image-icon w-16 h-16 rounded-full mr-4 border-2 border-pink-500" onerror="this.onerror=null; this.src='https://placehold.co/64x64/E2E8F0/2D3748?text=LM';">
+                                                <span class="persona-name-title flex-grow text-lg font-bold text-pink-700 dark:text-pink-300">LETICIA MORAIS</span>
+                                                <span class="toggle-icon text-pink-500 dark:text-pink-400"><i class="fas fa-chevron-down"></i></span>
+                                            </summary>
+                                            <div class="persona-foco p-2 text-xs font-semibold text-center bg-pink-100 text-pink-700 dark:bg-pink-700 dark:text-pink-100">Foco: Revendedor Multimarcas</div>
+                                            <div class="persona-card-body p-5 text-sm space-y-3">
+                                                <p class="persona-description italic"><span class="emoji">👩‍💼</span>Leticia é a Soberana de sua próspera Loja de Veículos Seminovos de médio porte. <span class="sentence-emoji">🐆</span>Uma comerciante ágil como uma pantera, conectada às correntes do mercado e sempre em busca das melhores oportunidades de compra para abastecer seu reino com os mais cobiçados artefatos sobre rodas.</p>
+                                                <h5 class="font-semibold text-pink-600 dark:text-pink-400"><span class="emoji">🎯</span> Seus Estandartes de Conquista (Objetivos):</h5>
+                                                <ul>
+                                                    <li data-emoji="🛒">Encontrar veículos de qualidade impecável com margens de lucro dignas de um tesouro real.</li>
+                                                    <li data-emoji="💎">Ter acesso a um inventário diversificado e constantemente atualizado com as mais raras gemas do mercado.</li>
+                                                    <li data-emoji="🤝">Forjar alianças duradouras com fornecedores confiáveis e honrados (concessionárias, locadoras).</li>
+                                                    <li data-emoji="⏱️">Agilizar o processo de aquisição e o transporte dos veículos para seu domínio, como um mensageiro alado.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-pink-600 dark:text-pink-400"><span class="emoji">😥</span> Os Dragões em Seu Caminho (Dores e Desafios):</h5>
+                                                <ul>
+                                                    <li data-emoji="📉">A árdua batalha para encontrar estoque de qualidade superior de forma consistente e previsível.</li>
+                                                    <li data-emoji="⏳">A perda de tempo precioso e energia vital visitando múltiplos feudos e reinos de fornecedores.</li>
+                                                    <li data-emoji="🚫">A névoa da falta de transparência nas informações e no histórico dos veículos ofertados.</li>
+                                                    <li data-emoji="💸">A acirrada concorrência com outros lordes e damas lojistas pelos melhores e mais cobiçados carros.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-pink-600 dark:text-pink-400"><span class="emoji">💡</span> Como a Magia da Auto Arremate a Coroa Rainha:</h5>
+                                                <ul>
+                                                    <li data-emoji="🌐">Acesso ao grandioso Marketplace B2B, um portal para incontáveis ofertas de concessionárias e locadoras de todo o império.</li>
+                                                    <li data-emoji="📋">Informações detalhadas e padronizadas dos veículos, reveladas pelo poder do RaioX®, como se lesse um pergaminho da verdade.</li>
+                                                    <li data-emoji="🔔">Alertas místicos sobre novas ofertas e oportunidades imperdíveis, para que nenhum tesouro escape de suas mãos.</li>
+                                                    <li data-emoji="🔒">Um processo de compra seguro como um cofre de dragão e transparente como as águas de uma fonte sagrada.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-pink-600 dark:text-pink-400"><span class="emoji">🔑</span> Palavras de Encantamento (Argumentos Chave) para Leticia:</h5>
+                                                <ul>
+                                                    <li data-emoji="🗣️">"Nobre Leticia, encontre os melhores seminovos para seu próspero reino em um só lugar, com a transparência de um cristal e a confiança de um juramento!"</li>
+                                                    <li data-emoji="🗣️">"Adquira de concessionárias e locadoras com a segurança de uma fortaleza e a agilidade de um raio através do nosso exclusivo marketplace!"</li>
+                                                    <li data-emoji="🗣️">"Receba alertas místicos sobre as melhores ofertas e não perca mais nenhuma oportunidade de um negócio lendário para sua loja!"</li>
+                                                </ul>
+                                            </div>
+                                        </details>
+                                    </div>
+                                </div>
+                                 <div class="personas-group mt-10">
+                                    <h5 class="personas-group-title" style="text-transform: uppercase; color: var(--text-headings-light-portal); font-size:1.3rem; border-bottom: 2px solid var(--border-color-light-portal); padding-bottom: 0.75rem; margin-bottom:1.5rem; text-align:center;">
+                                        <span class="emoji">🔑</span> OS GUARDIÕES DAS FROTAS (FOCO LOCADORA)
+                                    </h5>
+                                    <div class="personas-row grid md:grid-cols-2 gap-8">
+                                        <details class="persona-card bg-white dark:bg-slate-800 shadow-lg rounded-xl overflow-hidden" id="persona-card-alisson" data-aos="zoom-in-up" data-aos-delay="100">
+                                            <summary class="persona-card-header flex items-center p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+                                                <img src="https://i.imgur.com/mXktPTH.jpeg" alt="Foto de Alisson Rosa" class="persona-image-icon w-16 h-16 rounded-full mr-4 border-2 border-indigo-500" onerror="this.onerror=null; this.src='https://placehold.co/64x64/E2E8F0/2D3748?text=AR';">
+                                                <span class="persona-name-title flex-grow text-lg font-bold text-indigo-700 dark:text-indigo-300">ALISSON ROSA</span>
+                                                <span class="toggle-icon text-indigo-500 dark:text-indigo-400"><i class="fas fa-chevron-down"></i></span>
+                                            </summary>
+                                            <div class="persona-foco p-2 text-xs font-semibold text-center bg-indigo-100 text-indigo-700 dark:bg-indigo-700 dark:text-indigo-100">Foco: Locadora (Gerente de Frota)</div>
+                                            <div class="persona-card-body p-5 text-sm space-y-3">
+                                                <p class="persona-description italic"><span class="emoji">👨‍✈️</span>Alisson é o Comandante da Frota, um estratega que gerencia vastos exércitos de veículos. Ele lida com grandes volumes de aquisição e desmobilização, e precisa de processos eficientes, transparentes e que otimizem o custo total de propriedade (TCO).</p>
+                                                <h5 class="font-semibold text-indigo-600 dark:text-indigo-400"><span class="emoji">🎯</span> Objetivos Principais de Sua Missão:</h5>
+                                                <ul>
+                                                    <li data-emoji="💰">Otimizar o custo de aquisição e o valor de revenda da frota.</li>
+                                                    <li data-emoji="📋">Garantir a qualidade, o padrão e o giro rápido dos veículos.</li>
+                                                    <li data-emoji="📈">Gerenciar o ciclo de vida da frota com máxima eficiência e rentabilidade.</li>
+                                                    <li data-emoji="🤝">Ter parceiros confiáveis tanto para a compra quanto para a venda dos veículos.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-indigo-600 dark:text-indigo-400"><span class="emoji">😥</span> Dores e Desafios em Seu Quartel-General:</h5>
+                                                <ul>
+                                                    <li data-emoji="⚙️">Processos de compra e venda de frota complexos, demorados e burocráticos.</li>
+                                                    <li data-emoji="📉">Perda de valor dos veículos parados no pátio (depreciação).</li>
+                                                    <li data-emoji="🧐">Falta de padronização nas informações e avaliações dos veículos.</li>
+                                                    <li data-emoji="📢">Dificuldade em alcançar um grande número de compradores qualificados para a desmobilização.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-indigo-600 dark:text-indigo-400"><span class="emoji">💡</span> Como a Alquimia da Auto Arremate o Conduz à Vitória:</h5>
+                                                <ul>
+                                                    <li data-emoji="🚀">Marketplace B2B para escoamento rápido do volume para lojistas de todo o império.</li>
+                                                    <li data-emoji="🔗">Plataforma que facilita a comunicação e negociação com concessionárias para aquisições.</li>
+                                                    <li data-emoji="📋">Digitalização e padronização do processo de oferta e venda com o RaioX®.</li>
+                                                    <li data-emoji="📈">Dashboards para acompanhamento de performance das vendas e gestão de ativos.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-indigo-600 dark:text-indigo-400"><span class="emoji">🔑</span> Ordens de Comando (Argumentos Chave) para Alisson:</h5>
+                                                <ul>
+                                                    <li data-emoji="🗣️">"Comandante Alisson, venda sua frota desmobilizada com mais velocidade e rentabilidade em nosso marketplace B2B!"</li>
+                                                    <li data-emoji="🗣️">"Digitalize seu processo de remarketing, ganhe eficiência e apresente seus veículos de forma padronizada e atrativa para milhares de compradores."</li>
+                                                    <li data-emoji="🗣️">"Simplifique a cotação e aquisição de novos veículos junto às concessionárias parceiras."</li>
+                                                </ul>
+                                            </div>
+                                        </details>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="personas-organogram-container arremaq-specific mt-16" data-aos="fade-up">
+                                <h4 class="playbook-section-subtitle !text-center" style="text-transform: uppercase; color: var(--arremaq-orange); margin-top:1.5em; font-size: 1.8rem !important;">
+                                    <span class="emoji">🚜⚙️</span> <strong>TITÃS DO CAMPO E DA CONSTRUÇÃO: PERSONAS LENDÁRIAS DA ARREMAQ!</strong>
+                                </h4>
+                                <div class="personas-group mt-6">
+                                    <h5 class="personas-group-title" style="text-transform: uppercase; color: var(--text-headings-light-portal); font-size:1.3rem; border-bottom: 2px solid var(--border-color-light-portal); padding-bottom: 0.75rem; margin-bottom:1.5rem; text-align:center;">
+                                        <span class="emoji">🛠️</span> NOSSOS MESTRES E CLIENTES DE MÁQUINAS PESADAS
+                                    </h5>
+                                    <div class="personas-row grid md:grid-cols-3 gap-8">
+                                        <details class="persona-card arremaq-persona bg-white dark:bg-slate-800 shadow-lg rounded-xl overflow-hidden" id="persona-card-gabriel" data-aos="zoom-in-up" data-aos-delay="100">
+                                            <summary class="persona-card-header flex items-center p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+                                                <img src="https://i.imgur.com/yBvPoGi.jpeg" alt="Foto de Gabriel Nascimento" class="persona-image-icon w-16 h-16 rounded-full mr-4 border-2" onerror="this.onerror=null; this.src='https://placehold.co/64x64/FF7B00/FFFFFF?text=GN';">
+                                                <span class="persona-name-title flex-grow text-lg font-bold">GABRIEL NASCIMENTO</span>
+                                                <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+                                            </summary>
+                                            <div class="persona-foco arremaq-foco p-2 text-xs font-semibold text-center">Especialista Arremaq</div>
+                                            <div class="persona-card-body p-5 text-sm space-y-3">
+                                                <p class="persona-description italic"><span class="emoji">👷</span>Gabriel é o especialista técnico e comercial da Arremaq, apaixonado por máquinas pesadas e por conectar vendedores e compradores de forma eficiente e transparente. Ele entende as nuances do mercado de equipamentos agrícolas e de construção.</p>
+                                                <h5><span class="emoji">🎯</span> Objetivos Principais:</h5>
+                                                <ul>
+                                                    <li data-emoji="📚">Educar o mercado sobre os benefícios e processos da Arremaq para máquinas pesadas.</li>
+                                                    <li data-emoji="🛠️">Garantir avaliações técnicas precisas e padronizadas dos equipamentos.</li>
+                                                    <li data-emoji="🤝">Facilitar negociações seguras, transparentes e vantajosas para ambas as partes.</li>
+                                                    <li data-emoji="🌐">Expandir a rede de usuários (vendedores e compradores) da plataforma Arremaq.</li>
+                                                    <li data-emoji="📈">Aumentar o volume de máquinas transacionadas na plataforma.</li>
+                                                </ul>
+                                                <h5><span class="emoji">😥</span> Dores e Desafios (que ele resolve para os clientes):</h5>
+                                                <ul>
+                                                    <li data-emoji="🌫️">Falta de transparência e padronização nas negociações de máquinas usadas.</li>
+                                                    <li data-emoji="🤷">Dificuldade em encontrar compradores/vendedores qualificados para nichos específicos de máquinas.</li>
+                                                    <li data-emoji="⏳">Processos de avaliação e venda demorados, complexos e muitas vezes presenciais.</li>
+                                                    <li data-emoji="🚫">Risco de negociações com informações incompletas ou imprecisas sobre o estado do equipamento.</li>
+                                                    <li data-emoji="🌍">Alcance geográfico limitado para venda ou compra de máquinas.</li>
+                                                </ul>
+                                                <h5><span class="emoji">💡</span> Como a Arremaq (através de Gabriel) Ajuda:</h5>
+                                                <ul>
+                                                    <li data-emoji="📋">Plataforma com processos padronizados e checklists técnicos detalhados para avaliação.</li>
+                                                    <li data-emoji="📊">Critérios de precificação técnicos e baseados em dados de mercado específicos para máquinas.</li>
+                                                    <li data-emoji="🌍">Rede ampla de concessionárias, locadoras, construtoras, produtores rurais e revendedores.</li>
+                                                    <li data-emoji="🔒">Segurança e agilidade nas transações, com documentação e processos claros.</li>
+                                                    <li data-emoji="💻">Digitalização da jornada de compra e venda, reduzindo custos e tempo.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-arremaq-orange-darker dark:text-arremaq-orange-lighter"><span class="emoji">🔑</span> Argumentos Chave para Gabriel (ao abordar clientes):</h5>
+                                                <ul>
+                                                    <li data-emoji="🗣️">"Venda suas máquinas pesadas com segurança, transparência e o melhor valor de mercado usando a Arremaq."</li>
+                                                    <li data-emoji="🗣️">"Acesse um inventário qualificado de máquinas com avaliações técnicas detalhadas e confiáveis."</li>
+                                                    <li data-emoji="🗣️">"Simplificamos e digitalizamos o processo de compra e venda de máquinas, conectando você aos melhores negócios."</li>
+                                                </ul>
+                                            </div>
+                                        </details>
+                                        <details class="persona-card arremaq-persona bg-white dark:bg-slate-800 shadow-lg rounded-xl overflow-hidden" id="persona-card-vinicius" data-aos="zoom-in-up" data-aos-delay="200">
+                                            <summary class="persona-card-header flex items-center p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+                                                <img src="https://i.imgur.com/6V891Et.jpeg" alt="Foto de Vinicius Rocha" class="persona-image-icon w-16 h-16 rounded-full mr-4 border-2" onerror="this.onerror=null; this.src='https://placehold.co/64x64/FF7B00/FFFFFF?text=VR';">
+                                                <span class="persona-name-title flex-grow text-lg font-bold">VINICIUS ROCHA</span>
+                                                <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+                                            </summary>
+                                            <div class="persona-foco arremaq-foco p-2 text-xs font-semibold text-center">Usuário Plataforma Arremaq</div>
+                                            <div class="persona-card-body p-5 text-sm space-y-3">
+                                                <p class="persona-description italic"><span class="emoji">🧑‍🌾</span>Vinicius é proprietário/gerente de uma empresa (ex: construtora, agronegócio, locadora de equipamentos) que precisa negociar máquinas pesadas usadas de forma eficiente, seja para vender ativos ociosos ou adquirir equipamentos para seus projetos.</p>
+                                                <h5><span class="emoji">🎯</span> Objetivos Principais:</h5>
+                                                <ul>
+                                                    <li data-emoji="💸">Maximizar o valor de revenda da frota de máquinas pesadas.</li>
+                                                    <li data-emoji="⏱️">Acelerar o processo de venda para reduzir custos com depreciação e pátio.</li>
+                                                    <li data-emoji="🌐">Encontrar um canal de vendas com amplo alcance nacional de compradores qualificados.</li>
+                                                    <li data-emoji="🛡️">Garantir um processo de venda transparente, seguro e com pouca burocracia.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-arremaq-orange-darker dark:text-arremaq-orange-lighter"><span class="emoji">💡</span> Como a Arremaq Ajuda Vinicius:</h5>
+                                                <ul>
+                                                    <li data-emoji="🚀">Marketplace B2B com uma legião de compradores qualificados em todo o Brasil.</li>
+                                                    <li data-emoji="💻">Digitalização completa do processo de venda, da avaliação ao pagamento.</li>
+                                                    <li data-emoji="📋">Ferramentas para padronizar a apresentação e valorizar os ativos.</li>
+                                                    <li data-emoji="📈">Dashboards para acompanhamento da performance das vendas em tempo real.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-arremaq-orange-darker dark:text-arremaq-orange-lighter"><span class="emoji">🔑</span> Argumentos Chave para Vinicius:</h5>
+                                                <ul>
+                                                    <li data-emoji="🗣️">"Com a Arremaq, você vende suas máquinas paradas com mais agilidade e lucro."</li>
+                                                    <li data-emoji="🗣️">"Encontre as máquinas que sua operação precisa com informações técnicas confiáveis e preços competitivos."</li>
+                                                    <li data-emoji="🗣️">"Nossa plataforma digital simplifica todo o processo de compra e venda, economizando seu tempo e dinheiro."</li>
+                                                </ul>
+                                            </div>
+                                        </details>
+                                        <details class="persona-card arremaq-persona bg-white dark:bg-slate-800 shadow-lg rounded-xl overflow-hidden" id="persona-card-jose" data-aos="zoom-in-up" data-aos-delay="300">
+                                            <summary class="persona-card-header flex items-center p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+                                                <img src="https://i.imgur.com/j8ziMtL.jpeg" alt="Foto de José Teodoro" class="persona-image-icon w-16 h-16 rounded-full mr-4 border-2" onerror="this.onerror=null; this.src='https://placehold.co/64x64/FF7B00/FFFFFF?text=JT';">
+                                                <span class="persona-name-title flex-grow text-lg font-bold">JOSÉ TEODORO</span>
+                                                <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+                                            </summary>
+                                            <div class="persona-foco arremaq-foco p-2 text-xs font-semibold text-center">Gerente de Ativos (Grande Vendedor)</div>
+                                            <div class="persona-card-body p-5 text-sm space-y-3">
+                                                <p class="persona-description italic"><span class="emoji">👨‍🔧</span>José é o Mestre da Desmobilização em uma grande construtora ou império do agronegócio. Sua missão é garantir a máxima rentabilidade na venda dos titãs de aço da frota, liberando capital e abrindo caminho para novos investimentos.</p>
+                                                <h5><span class="emoji">🎯</span> Objetivos Principais:</h5>
+                                                <ul>
+                                                    <li data-emoji="💸">Maximizar o valor de revenda da frota de máquinas pesadas.</li>
+                                                    <li data-emoji="⏱️">Acelerar o processo de venda para reduzir custos com depreciação e pátio.</li>
+                                                    <li data-emoji="🌐">Encontrar um canal de vendas com amplo alcance nacional de compradores qualificados.</li>
+                                                    <li data-emoji="🛡️">Garantir um processo de venda transparente, seguro e com pouca burocracia.</li>
+                                                </ul>
+                                                <h5><span class="emoji">😥</span> Dores e Desafios:</h5>
+                                                <ul>
+                                                    <li data-emoji="⏳">Processos de venda tradicionais lentos e com alcance limitado.</li>
+                                                    <li data-emoji="📉">Dificuldade em atingir o preço de reserva desejado para os ativos.</li>
+                                                    <li data-emoji="📊">Falta de ferramentas para gerenciar e rastrear as vendas de um grande volume de máquinas.</li>
+                                                    <li data-emoji="🚫">Risco de negociar com compradores pouco qualificados ou especuladores.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-arremaq-orange-darker dark:text-arremaq-orange-lighter"><span class="emoji">💡</span> Como a Arremaq Ajuda José:</h5>
+                                                <ul>
+                                                    <li data-emoji="🚀">Marketplace B2B com uma legião de compradores qualificados em todo o Brasil.</li>
+                                                    <li data-emoji="💻">Digitalização completa do processo de venda, da avaliação ao pagamento.</li>
+                                                    <li data-emoji="📋">Ferramentas para padronizar a apresentação e valorizar os ativos.</li>
+                                                    <li data-emoji="📈">Dashboards para acompanhamento da performance das vendas em tempo real.</li>
+                                                </ul>
+                                                <h5 class="font-semibold text-arremaq-orange-darker dark:text-arremaq-orange-lighter"><span class="emoji">🔑</span> Argumentos Chave para José:</h5>
+                                                <ul>
+                                                    <li data-emoji="🗣️">"José, venda sua frota de máquinas com mais velocidade, segurança e pelo melhor preço do mercado através da Arremaq."</li>
+                                                    <li data-emoji="🗣️">"Digitalize e gerencie todo o seu processo de desmobilização, ganhando eficiência e transparência."</li>
+                                                    <li data-emoji="🗣️">"Apresente seus titãs de aço de forma profissional para milhares de compradores e maximize seu retorno."</li>
+                                                </ul>
+                                            </div>
+                                        </details>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <hr class="my-10 border-t-2 border-gray-200 dark:border-gray-700">
+
+                    <!-- SEÇÕES DE ANIMAÇÃO REMOVIDAS -->
+                    <!-- Início da seção de animação Auto Arremate (removida) -->
+                    <!-- Fim da seção de animação Auto Arremate (removida) -->
+
+                    <!-- Início da seção de animação Arremaq (removida) -->
+                    <!-- Fim da seção de animação Arremaq (removida) -->
+
+                    <hr class="my-10 border-t-2 border-gray-200 dark:border-gray-700">
+
+                    <div class="highlight" data-aos="fade-up" style="margin-top: 2.5em;">
+                        <p class="no-left-padding">
+                            <strong class="highlight-title"><span class="emoji">💡</span> LEMBRETE DE OURO: CONECTE-SE COM SEU CLIENTE!</strong><br>
+                            <span class="sentence-emoji">⭐</span> O segredo de uma venda bem-sucedida não está apenas em conhecer o produto, mas em conhecer profundamente o cliente.
+                            <span class="sentence-emoji">👂</span>Ouça mais do que fala.
+                            <span class="sentence-emoji">❓</span>Faça as perguntas certas.
+                            <span class="sentence-emoji">🤝</span>Mostre empatia e construa uma relação de confiança. Ao entender verdadeiramente as necessidades e desafios de cada persona, você se posiciona não como um vendedor, mas como um parceiro estratégico essencial para o sucesso deles.
+                            <span class="sentence-emoji">🚀</span> Esse é o caminho para vendas consultivas e de alto impacto!
+                        </p>
+                    </div>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="btn-nav prev navigateToPlaybookSection" data-target="playbook-sec-arremaq-content-main">❮ ARREMAQ: FORÇA BRUTA</button>
+                    <button class="btn-nav next navigateToPlaybookSection" data-target="playbook-persona-animation-section">JORNADA DO CLIENTE ❯</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <button id="themeToggleBtn" class="theme-toggle-button" aria-label="Alternar tema" title="Alternar Tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Templates para as animações - REMOVIDOS -->
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init({ duration: 700, once: true, offset: 50 });
+
+            const htmlEl = document.documentElement;
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const moonIcon = '<i class="fas fa-moon"></i>';
+            const sunIcon = '<i class="fas fa-sun"></i>';
+
+            function applyTheme(theme) {
+                htmlEl.setAttribute('data-theme', theme);
+                if (themeToggleBtn) {
+                    themeToggleBtn.innerHTML = theme === 'dark' ? sunIcon : moonIcon;
+                }
+            }
+
+            let storedTheme = null;
+            try { storedTheme = localStorage.getItem('theme'); } catch (e) { console.warn("LocalStorage não disponível para persistência do tema.");}
+            const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            applyTheme(storedTheme || preferredTheme);
+
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    const newTheme = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                    applyTheme(newTheme);
+                    try { localStorage.setItem('theme', newTheme); } catch (e) { console.warn("LocalStorage não está disponível para persistência do tema."); }
+                });
+            }
+
+            const increaseFontBtn = document.getElementById('increaseFontBtn');
+            const decreaseFontBtn = document.getElementById('decreaseFontBtn');
+            const FONT_STEP_PERCENT = 10;
+            const MIN_HTML_FONT_PERCENT = 60;
+            const MAX_HTML_FONT_PERCENT = 140;
+
+            function getCurrentHtmlFontSizePercent() {
+                const currentSizePx = parseFloat(window.getComputedStyle(htmlEl).fontSize);
+                const browserBaseSizePx = 16;
+                return (currentSizePx / browserBaseSizePx) * 100;
+            }
+
+            if (increaseFontBtn) {
+                increaseFontBtn.addEventListener('click', () => {
+                    let currentPercent = getCurrentHtmlFontSizePercent();
+                    let newPercent = currentPercent + FONT_STEP_PERCENT;
+                    htmlEl.style.fontSize = Math.min(newPercent, MAX_HTML_FONT_PERCENT) + '%';
+                });
+            }
+
+            if (decreaseFontBtn) {
+                decreaseFontBtn.addEventListener('click', () => {
+                    let currentPercent = getCurrentHtmlFontSizePercent();
+                    let newPercent = currentPercent - FONT_STEP_PERCENT;
+                    htmlEl.style.fontSize = Math.max(newPercent, MIN_HTML_FONT_PERCENT) + '%';
+                });
+            }
+
+            const readPageBtn = document.getElementById('readPageBtn');
+            const synth = window.speechSynthesis;
+            let isReading = false;
+
+            if (readPageBtn && synth) {
+                readPageBtn.addEventListener('click', () => {
+                    if (isReading) {
+                        synth.cancel();
+                        return;
+                    }
+                    const activeSection = document.getElementById('main-content');
+                    if (!activeSection) return;
+
+                    let textToRead = Array.from(activeSection.querySelectorAll('h1, h2, h3, h4, p, li div'))
+                        .map(el => el.textContent.replace(/<br>/gi, ' ').trim())
+                        .join('. ');
+
+                    if (textToRead.trim() === "") return;
+
+                    const utterance = new SpeechSynthesisUtterance(textToRead.replace(/\s+/g, ' ').trim());
+                    utterance.lang = 'pt-BR';
+                    utterance.onstart = () => {
+                        isReading = true;
+                        readPageBtn.innerHTML = '<i class="fas fa-stop-circle"></i>';
+                    };
+                    utterance.onend = () => {
+                        isReading = false;
+                        readPageBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    };
+                    utterance.onerror = () => {
+                        isReading = false;
+                        readPageBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    };
+                    synth.speak(utterance);
+                });
+            } else if (readPageBtn) {
+                readPageBtn.style.display = 'none';
+            }
+
+            // Removido setupJourneyAnimation calls
+        });
+    </script>
+</body>
+</html>

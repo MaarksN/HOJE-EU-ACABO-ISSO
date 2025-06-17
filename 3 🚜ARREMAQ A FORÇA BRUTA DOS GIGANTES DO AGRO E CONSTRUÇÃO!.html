@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arremaq: A Força Bruta dos Gigantes</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Animate On Scroll Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* * =============================================
+         * CSS Variables (Color Palette & Fonts)
+         * =============================================
+         */
+        :root {
+            /* Main Colors */
+            --aa-green: #16B097;
+            --aa-dark-blue: #1C2E42;
+            --aa-white: #FFFFFF;
+            --arremaq-orange: #FF8C00;
+            --arremaq-orange-darker: #D97706; 
+            --arremaq-orange-text-dark-theme: #FDBA74; 
+            --arremaq-orange-pastel: #fffbeb;
+            --arremaq-orange-darkest: #6b3e00; 
+            --aa-green-darker: #0F8A7E; 
+            --aa-green-text-dark-theme: #2DD4BF; 
+            --aa-green-lighter: #D2F3EC;
+            --aa-green-pastel: #f0fdfa; 
+            --aa-dark-blue-lighter: #2C4A6B;
+            
+            /* Fonts */
+            --font-headings-cover: 'Manrope', sans-serif; 
+            --font-body-cover: 'Manrope', sans-serif;    
+            --font-primary-portal: 'Manrope', sans-serif;
+            --font-headings-portal: 'Sora', sans-serif;
+
+            /* Backgrounds */
+            --bg-main-light: var(--arremaq-orange-pastel); 
+            --bg-main-dark: #1c1200; 
+            --bg-content-light-portal: var(--aa-white);
+            --bg-content-dark-portal: #2a2218; 
+            
+            /* Text */
+            --text-headings-light-portal: var(--aa-dark-blue);
+            --text-headings-dark-portal: var(--arremaq-orange-lighter);
+            --text-body-light-portal: #4d443a; 
+            --text-body-dark-portal: #e3dcd2; 
+            
+            /* Borders */
+            --border-color-light-portal: #e2e8f0; 
+            --border-color-dark-portal: #5b4a3a; 
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            
+            /* Border Radius */
+            --radius-xl: 1rem;
+            --radius-button-portal: 0.75rem;
+
+            /* Transitions */
+            --transition-main: .25s cubic-bezier(.4,0,.2,1);
+        }
+
+        /* * =============================================
+         * Global Styles & Dark Theme
+         * =============================================
+         */
+        html { 
+            scroll-behavior: smooth; 
+            font-family: var(--font-body-cover); 
+            font-size: 91%;
+        }
+        body {
+            margin: 0;
+            font-family: var(--font-body-cover); 
+            background-color: var(--bg-main-light);
+            color: var(--text-body-light-portal);
+            overflow-x: hidden; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+        html[data-theme='dark'] body {
+            background-color: var(--bg-main-dark);
+            color: var(--text-body-dark-portal);
+        }
+        
+        /* * =============================================
+         * Arremaq Section Styles
+         * =============================================
+         */
+        .playbook-sub-section { 
+            padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 2rem); 
+            min-height: 100vh; 
+        }
+
+        .playbook-content-title { 
+            font-family: var(--font-headings-portal); 
+            font-size: clamp(1.8rem, 4vw, 2.8rem); 
+            font-weight: 800; 
+            text-align: center; 
+            margin-bottom: 2rem; 
+            text-transform: uppercase; 
+            line-height: 1.3;
+        }
+        .title-arremaq { color: var(--arremaq-orange-darker); }
+        html[data-theme='dark'] .title-arremaq { color: var(--arremaq-orange-text-dark-theme); }
+
+        .playbook-section-title { 
+            font-family: var(--font-headings-portal); 
+            font-size: clamp(1.3rem, 2.8vw, 1.8rem); 
+            font-weight: 700; 
+            color: var(--text-headings-light-portal); 
+            margin-bottom: 1.5rem; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.08); 
+            line-height: 1.4;
+        }
+        html[data-theme='dark'] .playbook-section-title { color: var(--text-headings-dark-portal); }
+        .playbook-section-title .emoji { margin-right: 0.5rem; color: var(--arremaq-orange); }
+        html[data-theme='dark'] .playbook-section-title .emoji { color: var(--arremaq-orange-lighter); }
+        
+        .playbook-text p { font-size: 0.9rem; line-height: 1.8; margin-bottom: 1rem; color: var(--text-body-light-portal); }
+        html[data-theme='dark'] .playbook-text p { color: var(--text-body-dark-portal); }
+        .playbook-text .sentence-emoji { margin-right: 0.3em; font-size: 1em; }
+
+        /* Super Power Card Styles */
+        .super-power-card {
+            background-color: var(--bg-content-light-portal);
+            border: 1px solid var(--border-color-light-portal);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-main);
+            height: 100%;
+        }
+        .super-power-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--arremaq-orange);
+        }
+        html[data-theme='dark'] .super-power-card {
+             background-color: var(--bg-content-dark-portal);
+             border-color: var(--border-color-dark-portal);
+        }
+         html[data-theme='dark'] .super-power-card:hover {
+             border-color: var(--arremaq-orange-text-dark-theme);
+         }
+        .super-power-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--arremaq-orange);
+            line-height: 1;
+        }
+        .super-power-title {
+            font-family: var(--font-headings-portal);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-headings-light-portal);
+        }
+        html[data-theme='dark'] .super-power-title {
+             color: var(--text-headings-dark-portal);
+        }
+        .super-power-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background-image: linear-gradient(45deg, var(--arremaq-orange-pastel), var(--arremaq-orange-lighter));
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            margin-top: 3rem;
+            text-align: center; /* This will center the icon and title */
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--arremaq-orange-darker);
+        }
+        html[data-theme='dark'] .highlight-box {
+            background-image: linear-gradient(45deg, var(--arremaq-orange-darkest), #4b2a00);
+            border-color: var(--arremaq-orange-text-dark-theme);
+        }
+        .highlight-box .highlight-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--arremaq-orange-darker);
+        }
+        html[data-theme='dark'] .highlight-box .highlight-icon {
+            color: var(--arremaq-orange-text-dark-theme);
+        }
+        .highlight-box .highlight-title {
+            font-family: var(--font-headings-portal);
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--arremaq-orange-darkest);
+        }
+        html[data-theme='dark'] .highlight-box .highlight-title {
+            color: var(--arremaq-orange-lighter);
+        }
+        .highlight-box .highlight-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--arremaq-orange-darkest);
+            text-align: left; /* Changed from center to left */
+            max-width: 70ch; /* Added max-width for better readability */
+            margin-left: auto; /* To center the block of text */
+            margin-right: auto; /* To center the block of text */
+        }
+        html[data-theme='dark'] .highlight-box .highlight-text {
+            color: var(--arremaq-orange-lighter);
+        }
+
+        /* Utility Buttons */
+        .navigation-buttons { display: flex; justify-content: space-between; margin-top: 3rem; }
+        .btn-nav { padding: 0.8rem 1.8rem; border-radius: var(--radius-button-portal); font-weight: 700; transition: all var(--transition-main); border: 2px solid transparent; text-transform: uppercase; box-shadow: var(--shadow-sm); font-size: 0.9rem; }
+        .btn-nav:hover{ box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .btn-nav.prev { background-color: #6c757d; color: var(--aa-white); }
+        .btn-nav.prev:hover { background-color: #5a6268; }
+        html[data-theme='dark'] .btn-nav.prev { background-color: #495057; color: #f8f9fa; }
+        html[data-theme='dark'] .btn-nav.prev:hover { background-color: #343a40; }
+        .btn-nav.next { background-color: var(--arremaq-orange); color: var(--aa-white); }
+        .btn-nav.next:hover { background-color: var(--arremaq-orange-darker); }
+        html[data-theme='dark'] .btn-nav.next { background-color: var(--arremaq-orange-lighter); color: var(--arremaq-orange-darkest); }
+        html[data-theme='dark'] .btn-nav.next:hover { background-color: var(--arremaq-orange); color: var(--aa-white); }
+
+        /* * =============================================
+         * Accessibility & Theme Toggle Styles
+         * =============================================
+         */
+        .theme-toggle-button { position: fixed; bottom: 20px; right: 20px; background-image: linear-gradient(45deg, var(--aa-dark-blue), #2c3e50); color: var(--aa-white); border: 1px solid var(--border-color-dark-portal); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; box-shadow: var(--shadow-lg); z-index: 1000; transition: all var(--transition-main); }
+        .theme-toggle-button:hover { transform: scale(1.1); color: var(--arremaq-orange-lighter); box-shadow: 0 0 15px var(--arremaq-orange-lighter); }
+        html[data-theme='dark'] .theme-toggle-button { background-image: linear-gradient(45deg, var(--arremaq-orange-lighter), var(--arremaq-orange)); color: var(--aa-dark-blue); }
+        
+        .accessibility-controls { position: fixed; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1001; }
+        .accessibility-btn { background-color: var(--bg-content-light-portal); color: var(--text-headings-light-portal); border: 1px solid var(--border-color-light-portal); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; box-shadow: var(--shadow-md); transition: all var(--transition-main); background-image: linear-gradient(45deg, white, #e5e7eb); }
+        .accessibility-btn:hover { transform: scale(1.1); color: var(--arremaq-orange); box-shadow: var(--shadow-lg); }
+        html[data-theme='dark'] .accessibility-btn { background-image: linear-gradient(45deg, #475569, #334155); color: var(--text-headings-dark-portal); border-color: var(--border-color-dark-portal); }
+        html[data-theme='dark'] .accessibility-btn:hover { color: var(--arremaq-orange-lighter); }
+    </style>
+</head>
+<body>
+
+    <!-- Accessibility Controls -->
+    <div class="accessibility-controls">
+        <button id="increaseFontBtn" class="accessibility-btn" aria-label="Aumentar tamanho da fonte" title="Aumentar Fonte">
+            <i class="fas fa-search-plus"></i>
+        </button>
+        <button id="decreaseFontBtn" class="accessibility-btn" aria-label="Diminuir tamanho da fonte" title="Diminuir Fonte">
+            <i class="fas fa-search-minus"></i>
+        </button>
+    </div>
+
+    <main id="main-portal-completo">
+        <!-- 
+         * =============================================
+         * Section: Arremaq Content
+         * =============================================
+        -->
+        <section id="playbook-sec-arremaq-content-main" class="playbook-sub-section" data-aos="fade-up">
+            <div class="container mx-auto px-4">
+                <h2 class="playbook-content-title">
+                    <span class="emoji-original-color">🚜</span> <strong class="title-arremaq">ARREMAQ: A FORÇA BRUTA DOS GIGANTES DO AGRO E CONSTRUÇÃO!</strong>
+                </h2>
+                <div class="text-content-container playbook-text space-y-10 mt-8">
+                    <!-- Intro Section -->
+                    <section id="intro-arremaq" data-aos="fade-up">
+                        <h3 class="playbook-section-title uppercase text-center">
+                            <span class="emoji">🏗️</span> <strong>O Território dos Titãs: Bem-vindo à Arremaq!</strong>
+                        </h3>
+                        <p class="max-w-4xl mx-auto text-left md:text-justify"><span class="sentence-emoji">🌟</span>Saudações, mestre construtor e gigante do agro! Adentre o universo Arremaq, onde a força bruta encontra a inteligência estratégica. <span class="sentence-emoji">🚜</span>Aqui, tratores, colheitadeiras, escavadeiras e todos os titãs de aço que movem o progresso encontram uma plataforma robusta para otimizar sua comercialização e gestão.</p>
+                        <p class="max-w-4xl mx-auto text-left md:text-justify"><span class="sentence-emoji">⚙️</span>Seja você uma concessionária de máquinas pesadas, uma locadora de equipamentos de construção ou um grande frotista do agronegócio, a Arremaq é seu parceiro de confiança para garantir que seus ativos mais valiosos sejam negociados com máxima eficiência e rentabilidade. <span class="sentence-emoji">🏆</span>Prepare-se para operar com a força de um trator e a precisão de um GPS agrícola!</p>
+                    </section>
+
+                    <hr class="my-10 border-t-2 border-gray-200 dark:border-gray-700/50">
+
+                    <!-- Solutions Section with Cards -->
+                    <section id="solucoes-arremaq" data-aos="fade-up">
+                        <h3 class="playbook-section-title text-center uppercase">
+                            <span class="emoji">🛠️</span> <strong>Nosso Arsenal Pesado: Soluções Sob Medida</strong>
+                        </h3>
+                        <p class="mb-8 max-w-3xl mx-auto text-left md:text-justify"><span class="sentence-emoji">🔩</span>Conheça as ferramentas que fazem da Arremaq a plataforma líder para o mercado de máquinas. É tecnologia de ponta para quem lida com o trabalho pesado!</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                           <!-- Card 1 -->
+                            <div class="super-power-card" data-aos="fade-up" data-aos-delay="100">
+                                <div class="super-power-icon">🔎</div>
+                                <h4 class="super-power-title">Raio-X para Máquinas</h4>
+                                <p class="super-power-text">Diagnósticos precisos com checklists detalhados e relatórios fotográficos completos, garantindo transparência total nas negociações.</p>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="super-power-card" data-aos="fade-up" data-aos-delay="200">
+                                <div class="super-power-icon">🌐</div>
+                                <h4 class="super-power-title">Marketplace B2B para Gigantes</h4>
+                                <p class="super-power-text">Conectamos vendedores a compradores especializados em todo o Brasil, garantindo maior liquidez para seu estoque de máquinas pesadas.</p>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="super-power-card" data-aos="fade-up" data-aos-delay="300">
+                                <div class="super-power-icon">📊</div>
+                                <h4 class="super-power-title">Dashboards de Performance</h4>
+                                <p class="super-power-text">Monitore sua frota, acompanhe o giro de estoque e tome decisões baseadas em dados para otimizar a rentabilidade dos seus ativos.</p>
+                            </div>
+                             <!-- Card 4 -->
+                            <div class="super-power-card" data-aos="fade-up" data-aos-delay="400">
+                                <div class="super-power-icon">🔗</div>
+                                <h4 class="super-power-title">Integração com ERPs</h4>
+                                <p class="super-power-text">Sincronize nossa plataforma com seus sistemas de gestão para um fluxo de dados eficiente, evitando retrabalho e consolidando sua operação.</p>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Highlight Box -->
+                    <div class="highlight-box" data-aos="zoom-in-up">
+                        <div class="highlight-icon">📢</div>
+                        <h4 class="highlight-title">EQUIPE ARREMAQ, FORÇA TOTAL!</h4>
+                        <p class="highlight-text">
+                            <span class="sentence-emoji">🏗️</span> Vocês não vendem apenas máquinas; vocês oferecem a <strong>força que constrói o futuro e a tecnologia que alimenta a nação!</strong> <span class="sentence-emoji">🌱</span>
+                            Apresentem a Arremaq com a robustez de um gigante e a precisão de um engenheiro. Mostrem como nossa plataforma é a <strong>aliada estratégica para o sucesso dos titãs do agro e da construção!</strong> <span class="sentence-emoji">🚀</span> Vamos erguer impérios!
+                        </p>
+                    </div>
+
+                </div>
+                
+                <!-- Navigation Buttons -->
+                <div class="navigation-buttons">
+                    <button class="btn-nav prev" onclick="alert('Navegação para a seção anterior desativada neste exemplo.')">❮ VOLTAR</button>
+                    <button class="btn-nav next" onclick="alert('Navegação para a próxima seção desativada neste exemplo.')">AVANÇAR ❯</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Theme Toggle Button -->
+    <button id="themeToggleBtn" class="theme-toggle-button" aria-label="Alternar tema" title="Alternar Tema">
+        <i class="fas fa-moon"></i> 
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Animate on Scroll library
+            AOS.init({ duration: 700, once: true, offset: 50 });
+
+            // --- Theme Toggler ---
+            const htmlEl = document.documentElement;
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const moonIcon = '<i class="fas fa-moon"></i>';
+            const sunIcon = '<i class="fas fa-sun"></i>';
+
+            function applyTheme(theme) {
+                htmlEl.setAttribute('data-theme', theme);
+                if (themeToggleBtn) { 
+                    themeToggleBtn.innerHTML = theme === 'dark' ? sunIcon : moonIcon;
+                }
+            }
+            
+            // Check for saved theme in localStorage or user's system preference
+            let storedTheme = null;
+            try { storedTheme = localStorage.getItem('theme'); } catch (e) { console.warn("LocalStorage not available for theme persistence.");}
+            const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            applyTheme(storedTheme || preferredTheme); 
+
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    const newTheme = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; 
+                    applyTheme(newTheme); 
+                    try { localStorage.setItem('theme', newTheme); } catch (e) { console.warn("LocalStorage not available for theme persistence."); }
+                });
+            }
+
+            // --- Accessibility: Font Size Controls ---
+            const increaseFontBtn = document.getElementById('increaseFontBtn');
+            const decreaseFontBtn = document.getElementById('decreaseFontBtn');
+            const FONT_STEP_PERCENT = 10; 
+            const MIN_HTML_FONT_PERCENT = 60; 
+            const MAX_HTML_FONT_PERCENT = 140; 
+
+            function getCurrentHtmlFontSizePercent() {
+                const currentSizePx = parseFloat(window.getComputedStyle(htmlEl).fontSize);
+                const browserBaseSizePx = 16; // Standard browser default font size
+                return (currentSizePx / browserBaseSizePx) * 100;
+            }
+
+            if (increaseFontBtn) {
+                increaseFontBtn.addEventListener('click', () => {
+                    let currentPercent = getCurrentHtmlFontSizePercent();
+                    let newPercent = currentPercent + FONT_STEP_PERCENT;
+                    htmlEl.style.fontSize = Math.min(newPercent, MAX_HTML_FONT_PERCENT) + '%';
+                });
+            }
+            if (decreaseFontBtn) {
+                decreaseFontBtn.addEventListener('click', () => {
+                    let currentPercent = getCurrentHtmlFontSizePercent();
+                    let newPercent = currentPercent - FONT_STEP_PERCENT;
+                    htmlEl.style.fontSize = Math.max(newPercent, MIN_HTML_FONT_PERCENT) + '%';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Arremate na Pole Position</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Animate On Scroll Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* =============================================
+         * CSS Variables (Color Palette & Fonts)
+         * ============================================= */
+        :root {
+            /* Main Colors */
+            --aa-green: #16B097;
+            --aa-dark-blue: #1C2E42;
+            --aa-light-gray: #AEB0B2;
+            --aa-medium-gray: #6c7a89;
+            --aa-white: #FFFFFF;
+            --aa-black: #000000;
+            --aa-green-darker: #0F8A7E;
+            --aa-green-text-dark-theme: #2DD4BF;
+            --aa-green-lighter: #D2F3EC;
+            --aa-green-pastel: #f0fdfa;
+            --aa-dark-blue-lighter: #2C4A6B;
+            --aa-green-darkest: #17575c;
+            --arremaq-orange: #FF8C00;
+            --arremaq-orange-darker: #D97706;
+            --arremaq-orange-text-dark-theme: #FDBA74;
+
+            /* Fonts */
+            --font-primary-portal: 'Manrope', sans-serif;
+            --font-headings-portal: 'Sora', sans-serif;
+
+            /* Backgrounds */
+            --bg-main-light: var(--aa-green-pastel);
+            --bg-main-dark: #0a121c;
+            --bg-content-light-portal: var(--aa-white);
+            --bg-content-dark-portal: #1e293b;
+
+            /* Text */
+            --text-headings-light-portal: var(--aa-dark-blue);
+            --text-headings-dark-portal: var(--aa-green-lighter);
+            --text-body-light-portal: #334155;
+            --text-body-dark-portal: #cbd5e1;
+
+            /* Borders */
+            --border-color-light-portal: #e2e8f0;
+            --border-color-dark-portal: #334155;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+            /* Border Radius */
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-button-portal: 0.75rem;
+
+            /* Transitions */
+            --transition-main: .25s cubic-bezier(.4,0,.2,1);
+        }
+
+        /* =============================================
+         * Global Styles & Dark Theme
+         * ============================================= */
+        html {
+            scroll-behavior: smooth;
+            font-size: 91%;
+        }
+        body {
+            margin: 0;
+            font-family: var(--font-primary-portal);
+            background-color: var(--bg-main-light);
+            color: var(--text-body-light-portal);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+        html[data-theme='dark'] body {
+            background-color: var(--bg-main-dark);
+            color: var(--text-body-dark-portal);
+        }
+        .hidden { display: none !important; }
+
+        /* =============================================
+         * Content Section Styles
+         * ============================================= */
+        .playbook-sub-section {
+            padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 2rem);
+            background-color: var(--bg-main-light);
+            min-height: 100vh;
+        }
+        html[data-theme='dark'] .playbook-sub-section {
+            background-color: var(--bg-main-dark);
+        }
+
+        .playbook-content-title {
+            font-family: var(--font-headings-portal);
+            font-size: clamp(1.5rem, 3.2vw, 2rem);
+            font-weight: 700;
+            color: var(--text-headings-light-portal);
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        html[data-theme='dark'] .playbook-content-title {
+            color: var(--text-headings-dark-portal);
+        }
+        .playbook-content-title .emoji {
+            font-size: 1.1em;
+            margin-right: 0.6rem;
+            color: var(--aa-green);
+        }
+        html[data-theme='dark'] .playbook-content-title .emoji {
+            color: var(--aa-green-lighter);
+        }
+        .title-autoarremate {
+            color: var(--aa-green-darker);
+        }
+        html[data-theme='dark'] .title-autoarremate {
+            color: var(--aa-green-text-dark-theme);
+        }
+
+        .playbook-section-title {
+            font-family: var(--font-headings-portal);
+            font-size: clamp(1.3rem, 2.8vw, 1.8rem);
+            font-weight: 700;
+            color: var(--text-headings-light-portal);
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.08);
+            line-height: 1.4;
+        }
+        html[data-theme='dark'] .playbook-section-title {
+            color: var(--text-headings-dark-portal);
+        }
+        .playbook-section-title .emoji {
+            margin-right: 0.5rem;
+            color: var(--aa-green);
+        }
+        html[data-theme='dark'] .playbook-section-title .emoji {
+            color: var(--aa-green-lighter);
+        }
+
+        .playbook-text p {
+            font-size: 0.85rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .playbook-text .sentence-emoji {
+            margin-right: 0.3em;
+            font-size: 1em;
+        }
+
+        /* Card Styles (PDGC & Superpower) */
+        .pdgc-card, .superpower-card {
+            background-color: var(--bg-content-light-portal);
+            border: 1px solid var(--border-color-light-portal);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-main);
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        html[data-theme='dark'] .pdgc-card,
+        html[data-theme='dark'] .superpower-card {
+            background-color: var(--bg-content-dark-portal);
+            border-color: var(--border-color-dark-portal);
+        }
+        .pdgc-card:hover, .superpower-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--aa-green);
+        }
+        html[data-theme='dark'] .pdgc-card:hover,
+        html[data-theme='dark'] .superpower-card:hover {
+            border-color: var(--aa-green-lighter);
+        }
+
+        .pdgc-emoji, .superpower-emoji {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--aa-green);
+            line-height: 1;
+        }
+        html[data-theme='dark'] .pdgc-emoji,
+        html[data-theme='dark'] .superpower-emoji {
+            color: var(--aa-green-lighter);
+        }
+
+        .pdgc-title, .superpower-title {
+            font-family: var(--font-headings-portal);
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-headings-light-portal);
+            line-height: 1.4;
+        }
+         html[data-theme='dark'] .pdgc-title,
+         html[data-theme='dark'] .superpower-title {
+            color: var(--text-headings-dark-portal);
+        }
+
+        .pdgc-description, .superpower-description {
+            font-size: 0.78rem;
+            line-height: 1.6;
+            color: var(--text-body-light-portal);
+            margin-top: auto; /* Pushes description to bottom if card height varies */
+        }
+        html[data-theme='dark'] .pdgc-description,
+        html[data-theme='dark'] .superpower-description {
+            color: var(--text-body-dark-portal);
+        }
+        
+        /* Highlight Box Style */
+        .highlight {
+            background-color: #f0f9ff;
+            border-left: 8px solid #3b82f6;
+            border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+            padding: 2rem;
+            box-shadow: var(--shadow-xl);
+            margin-top: 2.5rem;
+        }
+        html[data-theme='dark'] .highlight {
+            background-color: #1e3a8a;
+            border-left-color: #60a5fa;
+        }
+        .highlight p {
+             color: #1e3a8a;
+        }
+        html[data-theme='dark'] .highlight p {
+            color: #dbeafe;
+        }
+
+        /* =============================================
+         * Utility & Navigation Button Styles
+         * ============================================= */
+        .btn-voltar-secao {
+            display: inline-flex;
+            align-items: center;
+            font-family: var(--font-headings-portal);
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-button-portal);
+            text-decoration: none;
+            transition: all var(--transition-main);
+            border: 2px solid var(--aa-green);
+            background-color: transparent;
+            color: var(--aa-green-darker);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+        }
+        .btn-voltar-secao:hover {
+            background-color: var(--aa-green-lighter);
+            border-color: var(--aa-green-darker);
+            transform: translateY(-2px);
+            color: var(--aa-green-darker);
+        }
+        html[data-theme='dark'] .btn-voltar-secao {
+            border-color: var(--aa-green-lighter);
+            color: var(--aa-green-lighter);
+        }
+        html[data-theme='dark'] .btn-voltar-secao:hover {
+            background-color: var(--aa-green-darker);
+            border-color: var(--aa-green-lighter);
+            color: var(--aa-white);
+        }
+        .btn-voltar-secao i {
+            margin-right: 0.5rem;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+        }
+        .btn-nav {
+            padding: 0.7rem 1.5rem;
+            border-radius: var(--radius-lg);
+            font-weight: 700;
+            transition: all var(--transition-main);
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            box-shadow: var(--shadow-sm);
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+        .btn-nav:hover{
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .btn-nav.prev {
+            background-color: var(--aa-medium-gray);
+            color: var(--aa-white);
+            border-color: var(--aa-dark-blue);
+        }
+        .btn-nav.prev:hover {
+            background-color: var(--aa-dark-blue);
+        }
+        html[data-theme='dark'] .btn-nav.prev {
+            background-color: var(--aa-medium-gray);
+            color: var(--bg-main-dark);
+            border-color: var(--aa-green-lighter);
+        }
+        html[data-theme='dark'] .btn-nav.prev:hover {
+            background-color: var(--aa-green-lighter);
+            color: var(--aa-dark-blue);
+        }
+        .btn-nav.next {
+            background-color: var(--aa-green);
+            color: var(--aa-white);
+            border-color: var(--aa-green-darker);
+        }
+        .btn-nav.next:hover {
+            background-color: var(--aa-green-darker);
+        }
+        html[data-theme='dark'] .btn-nav.next {
+            background-color: var(--arremaq-orange-text-dark-theme);
+            color: var(--aa-dark-blue);
+            border-color: var(--arremaq-orange);
+        }
+        html[data-theme='dark'] .btn-nav.next:hover {
+            background-color: var(--arremaq-orange);
+            color: var(--aa-white);
+        }
+        .btn-nav:disabled {
+            background-color: #e2e8f0;
+            color: #94a3b8;
+            cursor: not-allowed;
+            opacity: 0.7;
+            border-color: #cbd5e1;
+        }
+        html[data-theme='dark'] .btn-nav:disabled {
+            background-color: #334155;
+            color: #64748b;
+            border-color: #475569;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900">
+
+    <main id="main-content">
+
+        <!-- =============================================
+         * SECTION: AUTO ARREMATE NA POLE POSITION
+         * This is the main content section you requested.
+         * ============================================= -->
+        <section id="playbook-sec-1-content-main" class="playbook-sub-section" data-aos="fade-up">
+            <div class="container mx-auto">
+                 <button class="btn-voltar-secao mb-8 text-sm">
+                    <i class="fas fa-arrow-left mr-2"></i> VOLTAR AO GUIA ESTRATÉGICO
+                </button>
+                <h2 class="playbook-content-title text-center">
+                    <span class="emoji">🚗</span><strong class="title-autoarremate">AUTO ARREMATE NA POLE POSITION: DOMINANDO O UNIVERSO DOS VEÍCULOS LEVES!</strong>
+                </h2>
+                <div class="text-content-container playbook-text space-y-10 mt-8">
+                    <!-- Intro Section -->
+                    <section id="intro-auto-arremate" data-aos="fade-up">
+                        <h3 class="playbook-section-title !text-center uppercase">
+                            <span class="emoji">🌟</span> <strong>A GARAGEM DOS CAMPEÕES: PERFORMANCE E INOVAÇÃO PARA VEÍCULOS LEVES!</strong>
+                        </h3>
+                        <p><span class="sentence-emoji">🏁</span>Prepare-se para entrar na pista de alta velocidade da Auto Arremate, onde cada veículo leve encontra seu destino de forma ágil, inteligente e lucrativa! <span class="sentence-emoji">🛠️</span>Nossa plataforma é o seu box de ferramentas completo, projetado para concessionárias, locadoras e todos os ases do volante que buscam dominar o universo da comercialização de carros, SUVs, e utilitários.</p>
+                        <p><span class="sentence-emoji">🏆</span>Desde a avaliação precisa com o nosso <strong>RaioX</strong>, que enxerga cada detalhe do veículo como um mecânico experiente, até a publicação em nosso <strong>Marketplace B2B</strong>, a maior vitrine de oportunidades do Brasil, a Auto Arremate é a sua garantia de pole position. <span class="sentence-emoji">📊</span>Com nossos <strong>Dashboards</strong>, você tem o painel de controle para decisões na velocidade da luz, transformando dados em ultrapassagens estratégicas!</p>
+                    </section>
+
+                    <hr class="my-10 border-t-2 border-gray-200 dark:border-gray-700">
+
+                    <!-- PDGC Pillars Section -->
+                    <section id="pilares-pdgc" data-aos="fade-up">
+                        <h3 class="playbook-section-title !text-center uppercase">
+                            <span class="emoji">✨</span> <strong>NOSSOS PILARES MÁGICOS (PDGC): A FÓRMULA SECRETA DA VITÓRIA!</strong>
+                        </h3>
+                        <p><span class="sentence-emoji">🔑</span>Apresentamos o conceito <strong>PDGC</strong>, a nossa fórmula secreta para turbinar seus resultados no mercado de veículos leves! <span class="sentence-emoji">💡</span>Cada letra é um componente crucial do nosso motor de sucesso, e juntas, elas formam a engrenagem perfeita que impulsiona nossos clientes à vitória:</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+                            <div class="pdgc-card" data-aos="zoom-in" data-aos-delay="100">
+                                <div class="pdgc-emoji">🅿️</div>
+                                <h4 class="pdgc-title">PRECIFICAÇÃO INTELIGENTE</h4>
+                                <p class="pdgc-description">Use nossos dados de mercado para calibrar seus preços como um campeão, maximizando sua margem em cada negociação!</p>
+                            </div>
+                            <div class="pdgc-card" data-aos="zoom-in" data-aos-delay="200">
+                                <div class="pdgc-emoji">📢</div>
+                                <h4 class="pdgc-title">DIVULGAÇÃO TURBINADA</h4>
+                                <p class="pdgc-description">Seu veículo na vitrine certa! Alcance nacional em nosso Marketplace B2B e outros canais para vender mais rápido.</p>
+                            </div>
+                            <div class="pdgc-card" data-aos="zoom-in" data-aos-delay="300">
+                                <div class="pdgc-emoji">🛠️</div>
+                                <h4 class="pdgc-title">GESTÃO EFICIENTE</h4>
+                                <p class="pdgc-description">Controle total do seu estoque, vistorias digitais com RaioX e dashboards para decisões ágeis. Seu pit stop de comando!</p>
+                            </div>
+                            <div class="pdgc-card" data-aos="zoom-in" data-aos-delay="400">
+                                <div class="pdgc-emoji">💰</div>
+                                <h4 class="pdgc-title">COMERCIALIZAÇÃO VENCEDORA</h4>
+                                <p class="pdgc-description">Ferramentas e estratégias para fechar negócios mais rápido, com mais lucro e menos dor de cabeça. A bandeirada final!</p>
+                            </div>
+                        </div>
+                        <p class="mt-6"><span class="sentence-emoji">🏁</span>O PDGC é a essência do que a Auto Arremate entrega: uma solução <strong>completa e integrada</strong> que atua em todas as frentes para garantir que você cruze a linha de chegada sempre na frente!</p>
+                    </section>
+
+                    <hr class="my-10 border-t-2 border-gray-200 dark:border-gray-700">
+
+                    <!-- Superpowers Cards Section -->
+                    <section id="superpoderes-plataforma" data-aos="fade-up">
+                        <h3 class="playbook-section-title !text-center uppercase"><span class="emoji">🦸</span> OS SUPERPODERES DA NOSSA PLATAFORMA: SUA GARAGEM TECNOLÓGICA!</h3>
+                        <p class="text-center mb-8"><span class="sentence-emoji">🚀</span>Descubra as ferramentas que nos tornam imbatíveis e impulsionam o sucesso estrondoso dos nossos clientes na Auto Arremate. É aqui que a mágica da velocidade e da eficiência acontece!</p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="superpower-card" data-aos="fade-up">
+                                <div class="superpower-emoji">🔗</div>
+                                <h4 class="superpower-title">TUDO CONECTADO: A PLATAFORMA INTEGRADA!</h4>
+                                <p class="superpower-description">Imagine um ecossistema digital onde todas as ferramentas que você precisa estão interligadas, funcionando em perfeita harmonia para uma visão 360º do seu negócio.</p>
+                            </div>
+                            <div class="superpower-card" data-aos="fade-up" data-aos-delay="100">
+                                <div class="superpower-emoji">🔎</div>
+                                <h4 class="superpower-title">RAIOX: A VISÃO DE RAIO-X DIGITAL!</h4>
+                                <p class="superpower-description">Nossa ferramenta de inspeção digital permite um levantamento completo do estado do veículo, da lataria aos detalhes internos, garantindo a confiança para fechar negócios.</p>
+                            </div>
+                            <div class="superpower-card" data-aos="fade-up" data-aos-delay="200">
+                                <div class="superpower-emoji">➕</div>
+                                <h4 class="superpower-title">RAIOX+: O HISTÓRICO COMPLETO!</h4>
+                                <p class="superpower-description">Mergulhe fundo no passado do veículo, trazendo à tona informações cruciais como histórico de roubo, débitos, multas e sinistros para proteger seus negócios.</p>
+                            </div>
+                            <div class="superpower-card" data-aos="fade-up">
+                                <div class="superpower-emoji">📊</div>
+                                <h4 class="superpower-title">DASHBOARDS: DECISÕES NA VELOCIDADE DA LUZ!</h4>
+                                <p class="superpower-description">Acompanhe em tempo real os indicadores chave do seu negócio: giro de estoque, performance de vendas, precificação e muito mais, para decisões rápidas e inteligentes.</p>
+                            </div>
+                            <div class="superpower-card" data-aos="fade-up" data-aos-delay="100">
+                                <div class="superpower-emoji">🤝</div>
+                                <h4 class="superpower-title">MARKETPLACE B2B: O GRANDE PONTO DE ENCONTRO!</h4>
+                                <p class="superpower-description">Conecte-se ao maior universo de oportunidades B2B do Brasil. Publique seus veículos para uma audiência qualificada ou encontre o estoque que você precisa.</p>
+                            </div>
+                            <div class="superpower-card" data-aos="fade-up" data-aos-delay="200">
+                                <div class="superpower-emoji">⚡</div>
+                                <h4 class="superpower-title">COTAÇÃO RÁPIDA: AGILIDADE PURA!</h4>
+                                <p class="superpower-description">Precisa avaliar um veículo para compra ou trade-in? Obtenha uma estimativa precisa e baseada em dados de mercado em questão de segundos. Agilidade para suas negociações!</p>
+                            </div>
+                             <div class="superpower-card" data-aos="fade-up">
+                                <div class="superpower-emoji">🏷️</div>
+                                <h4 class="superpower-title">WHITE LABEL: SUA MARCA, NOSSA POTÊNCIA!</h4>
+                                <p class="superpower-description">Fortaleça sua marca com um portal de vendas online com sua identidade visual, mas com toda a tecnologia e robustez da plataforma Auto Arremate por trás.</p>
+                            </div>
+                            <div class="superpower-card" data-aos="fade-up" data-aos-delay="100">
+                                <div class="superpower-emoji">🔌</div>
+                                <h4 class="superpower-title">INTEGRAÇÕES: CONECTANDO SEU UNIVERSO!</h4>
+                                <p class="superpower-description">Nossa plataforma fala a língua do seu negócio! Integramos facilmente com os principais CRMs e ERPs do mercado, garantindo um fluxo de dados automático e sem gargalos.</p>
+                            </div>
+                             <div class="superpower-card" data-aos="fade-up" data-aos-delay="200">
+                                <div class="superpower-emoji">🔑</div>
+                                <h4 class="superpower-title">JORNADA PÓS-VENDA: FECHANDO COM CHAVE DE OURO!</h4>
+                                <p class="superpower-description">A venda não termina na assinatura! Oferecemos ferramentas para gerenciar a jornada pós-venda, garantindo a satisfação e fidelização do seu cliente.</p>
+                            </div>
+                            <div class="superpower-card" data-aos="fade-up">
+                                <div class="superpower-emoji">🔒</div>
+                                <h4 class="superpower-title">PERMISSÕES DE ACESSO: CONTROLE TOTAL!</h4>
+                                <p class="superpower-description">Segurança e controle são fundamentais. Defina quem pode ver e fazer o quê dentro da plataforma, garantindo que cada membro da equipe tenha o acesso certo.</p>
+                            </div>
+                           <div class="superpower-card" data-aos="fade-up" data-aos-delay="100">
+                                <div class="superpower-emoji">📦</div>
+                                <h4 class="superpower-title">MODELO DE OFERTAS EM LOTE: COMPRE MAIS, MAIS FÁCIL!</h4>
+                                <p class="superpower-description">Para quem busca volume com inteligência. Permite que compradores adquiram múltiplos veículos de uma só vez, com condições especiais e um processo simplificado.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Highlight Box -->
+                    <div class="highlight" data-aos="fade-up">
+                        <p class="text-lg md:text-xl font-semibold">
+                            <strong class="block text-xl md:text-2xl mb-2 font-bold text-center"><span class="emoji">📢</span> EQUIPE AUTO ARREMATE, PREPARAR PARA ACELERAR!</strong>
+                            <span class="initial-emoji">⭐</span> Vocês não vendem apenas uma plataforma, vocês entregam o <strong>mapa da mina para a transformação digital</strong> no mercado automotivo!
+                            <span class="initial-emoji">💪</span> Acreditem no poder da nossa solução, dominem cada ferramenta, e mostrem aos nossos clientes como a Auto Arremate® é a <strong>chave para o pódio deles!</strong> <span class="initial-emoji">🚀</span>Katchau! Vamos com tudo!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="navigation-buttons">
+                    <button class="btn-nav prev" disabled>❮ VOLTAR</button>
+                    <button class="btn-nav next">AVANÇAR ❯</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Animate on Scroll
+            AOS.init({
+                duration: 700, // animation duration
+                once: true,     // whether animation should happen only once - while scrolling down
+                offset: 50      // offset (in px) from the original trigger point
+            });
+
+            // --- Theme Toggler (simplified for this component) ---
+            const themeToggleBtn = document.createElement('button');
+            themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+            themeToggleBtn.style.position = 'fixed';
+            themeToggleBtn.style.bottom = '20px';
+            themeToggleBtn.style.right = '20px';
+            themeToggleBtn.style.width = '50px';
+            themeToggleBtn.style.height = '50px';
+            themeToggleBtn.style.borderRadius = '50%';
+            themeToggleBtn.style.border = '1px solid #ccc';
+            themeToggleBtn.style.cursor = 'pointer';
+            themeToggleBtn.style.zIndex = '1000';
+            document.body.appendChild(themeToggleBtn);
+
+            themeToggleBtn.addEventListener('click', () => {
+                const htmlEl = document.documentElement;
+                const isDarkMode = htmlEl.getAttribute('data-theme') === 'dark';
+                if (isDarkMode) {
+                    htmlEl.setAttribute('data-theme', 'light');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                } else {
+                    htmlEl.setAttribute('data-theme', 'dark');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+            });
+
+             // Check for prefers-color-scheme to set initial theme
+            const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', preferredTheme);
+             if(preferredTheme === 'dark') {
+                  themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+             }
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Auto Arremate® / Arremaq 3.0 - Capa e Índices</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Animate On Scroll Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* * =============================================
+         * CSS Variables (Color Palette & Fonts)
+         * =============================================
+         */
+        :root {
+            /* Main Colors */
+            --aa-green: #16B097;
+            --aa-dark-blue: #1C2E42;
+            --aa-light-gray: #AEB0B2; 
+            --aa-medium-gray: #6c7a89; 
+            --aa-white: #FFFFFF;
+            --aa-black: #000000;
+            --aa-green-darker: #0F8A7E; 
+            --aa-green-text-dark-theme: #2DD4BF; 
+            --aa-green-lighter: #D2F3EC;
+            --aa-green-pastel: #f0fdfa; 
+            --aa-dark-blue-lighter: #2C4A6B;
+            --aa-green-darkest: #17575c; 
+            --aa-shiny-gray-light: #E5E7EB; 
+            --aa-shiny-gray-dark: #374151;  
+
+            --arremaq-orange: #FF8C00;
+            --arremaq-orange-darker: #D97706; 
+            --arremaq-orange-text-dark-theme: #FDBA74; 
+            --arremaq-orange-lighter: #FFD073;
+            --arremaq-orange-pastel: #fffbeb;
+            --arremaq-orange-darkest: #6b3e00; 
+            
+            /* Fonts */
+            --font-headings-cover: 'Manrope', sans-serif; 
+            --font-body-cover: 'Manrope', sans-serif;    
+            --font-primary-portal: 'Manrope', sans-serif;
+            --font-headings-portal: 'Sora', sans-serif;
+
+            /* Backgrounds */
+            --bg-main-light: var(--aa-green-pastel); 
+            --bg-main-dark: #0a121c; 
+            --bg-content-light-portal: var(--aa-white);
+            --bg-content-dark-portal: #1e293b; 
+            --bg-cards-section-light: #f0f4f8; 
+            --bg-cards-section-dark: #111827;  
+
+            /* Text */
+            --text-headings-light-portal: var(--aa-dark-blue);
+            --text-headings-dark-portal: var(--aa-green-lighter);
+            --text-body-light-portal: #334155; 
+            --text-body-dark-portal: #cbd5e1; 
+            --text-muted-light-portal: #616161; 
+            --text-muted-dark-portal: #94a3b8; 
+            
+            /* Borders */
+            --border-color-light-portal: #e2e8f0; 
+            --border-color-dark-portal: #334155; 
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            
+            /* Border Radius */
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-full: 9999px;
+            --radius-card-portal: 1.25rem;
+            --radius-button-portal: 0.75rem;
+            
+            /* Transitions */
+            --transition-main: .25s cubic-bezier(.4,0,.2,1);
+        }
+
+        /* * =============================================
+         * Global Styles & Dark Theme
+         * =============================================
+         */
+        html { 
+            scroll-behavior: smooth; 
+            font-family: var(--font-body-cover); 
+            font-size: 91%;
+        }
+        body {
+            margin: 0;
+            font-family: var(--font-body-cover); 
+            background-color: var(--bg-main-light);
+            color: var(--text-body-light-portal);
+            overflow-x: hidden; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+        html[data-theme='dark'] body {
+            background-color: var(--bg-main-dark);
+            color: var(--text-body-dark-portal);
+        }
+        .hidden { display: none !important; }
+
+        /* * =============================================
+         * Cover Section Styles
+         * =============================================
+         */
+        .capa-section { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: clamp(1.2rem, 4.8vw, 2.4rem) clamp(0.8rem, 4vw, 1.6rem); text-align: center; position: relative; background: linear-gradient(60deg, var(--arremaq-orange-pastel) 0%, var(--arremaq-orange-lighter) 15%, var(--aa-shiny-gray-light) 35%, var(--aa-green-lighter) 55%, var(--aa-shiny-gray-light) 75%, var(--aa-green-pastel) 90%, var(--arremaq-orange-pastel) 100%); background-size: 300% 300%; animation: backgroundGradientAnimation 20s ease infinite; overflow: hidden; }
+        html[data-theme='dark'] .capa-section { background: linear-gradient(60deg, var(--arremaq-orange-darkest) 0%, var(--arremaq-orange-darker) 15%, var(--aa-shiny-gray-dark) 35%, var(--aa-dark-blue) 55%, var(--aa-shiny-gray-dark) 75%, var(--aa-green-darkest) 90%, var(--arremaq-orange-darkest) 100%); background-size: 300% 300%; animation: backgroundGradientAnimation 20s ease infinite; }
+        @keyframes backgroundGradientAnimation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        .logos-container { display: flex; justify-content: center; align-items: center; gap: 1.2rem; margin-bottom: 1.2rem; } 
+        .playbook-logo { width: 192px; max-width: 45%; height: auto; display: block; filter: drop-shadow(0 0.4rem 0.8rem rgba(0,0,0,0.1)); animation: logo-float 3s ease-in-out infinite alternate, logo-blink 2s linear infinite; }
+        html[data-theme='dark'] .playbook-logo { filter: drop-shadow(0 0.4rem 0.8rem rgba(0,0,0,0.3)); }
+        @keyframes logo-float { 0% { transform: translateY(0px); } 100% { transform: translateY(-5px); } } 
+        @keyframes logo-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        
+        .capa-title { font-family: var(--font-headings-cover); font-weight: 800; text-align: center; margin-top: 0.4em; margin-bottom: 0.6em; font-size: clamp(1rem, 2.2vw, 1.35rem); line-height: 1.5; text-transform: uppercase; letter-spacing: 0.05em; color: var(--aa-dark-blue); }
+        html[data-theme='dark'] .capa-title { color: var(--aa-green-lighter); }
+        .capa-title .capa-title-line { display: block; margin-bottom: 0.15em; }
+        .capa-title .capa-title-line:last-child { margin-bottom: 0; }
+        .capa-title.fun-title-effect { animation: fun-title-glow-animation 4s ease-in-out infinite alternate; position: relative; }
+        
+        .emoji-original-color { -webkit-text-fill-color: initial; text-fill-color: initial; background: none; display: inline-block; text-shadow: none; }
+        
+        .text-aa-green-darker { color: var(--aa-green-darker) !important; }
+        html[data-theme='dark'] .text-aa-green-darker { color: var(--aa-green-text-dark-theme) !important; }
+        .text-arremaq-orange-darker { color: var(--arremaq-orange-darker) !important; }
+        html[data-theme='dark'] .text-arremaq-orange-darker { color: var(--arremaq-orange-text-dark-theme) !important; }
+        
+        .frase-destaque { font-family: var(--font-headings-cover); font-size: clamp(0.845rem, 1.69vw, 1.17rem); font-weight: 700; background: transparent; border-radius: var(--radius-lg); padding: 0.3em 0.6em; margin-bottom: 0.8rem; margin-top: 0.6em; display: block; max-width: 90%; margin-left: auto; margin-right: auto; text-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: all var(--transition-main); }
+        html[data-theme='dark'] .frase-destaque { text-shadow: 0 1px 3px rgba(0,0,0,0.6); }
+        .frase-destaque-verde { color: var(--aa-green-darker); }
+        html[data-theme='dark'] .frase-destaque-verde { color: var(--aa-green-text-dark-theme); }
+        .frase-destaque-laranja { color: var(--arremaq-orange-darker); }
+        html[data-theme='dark'] .frase-destaque-laranja { color: var(--arremaq-orange-text-dark-theme); }
+        .frase-destaque .emoji { margin: 0 0.25em; font-size: 1em; vertical-align: middle; -webkit-text-fill-color: initial; text-fill-color: initial; background: none; text-shadow: none; }
+        .frase-destaque.fun-frase-effect { animation: fun-frase-pulse 3s ease-in-out infinite; }
+        @keyframes fun-frase-pulse { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.02); opacity: 1; } }
+        
+        .capa-criado { font-family: var(--font-body-cover); font-size: 0.78rem; color: var(--aa-dark-blue); opacity: 0.95; margin-top: 1rem; margin-bottom: 1rem; font-weight: 500; animation: created-by-pulse 5s infinite alternate; text-align: center; text-shadow: 0 1px 1px rgba(0,0,0,0.1); }
+        html[data-theme='dark'] .capa-criado { color: #E2E8F0; opacity: 0.9; text-shadow: 0 1px 1px rgba(0,0,0,0.2); }
+        @keyframes created-by-pulse { 0% { text-shadow: 0 0 3px rgba(22, 176, 151, 0.2), 0 0 1px rgba(255, 140, 0, 0.1); transform: scale(1); } 50% { text-shadow: 0 0 7px rgba(22, 176, 151, 0.4), 0 0 4px rgba(255, 140, 0, 0.3); transform: scale(1.03); } 100% { text-shadow: 0 0 3px rgba(22, 176, 151, 0.2), 0 0 1px rgba(255, 140, 0, 0.1); transform: scale(1); } }
+        .capa-criado .emoji { font-size: 1em; vertical-align: baseline; margin: 0 0.15em; }
+        .capa-criado .creator-name { font-weight: 700; background: linear-gradient(45deg, var(--aa-green-darker) 20%, var(--aa-green) 50%, var(--arremaq-orange) 80%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent; padding: 0 0.2em; display: inline-block; }
+        html[data-theme='dark'] .capa-criado .creator-name { background: linear-gradient(45deg, var(--aa-green-lighter) 20%, var(--aa-green) 50%, var(--arremaq-orange-lighter) 80%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent; }
+        
+        .btn-iniciar { display: inline-flex; align-items: center; gap: 0.6em; font-family: var(--font-headings-cover); font-size: 0.975rem; font-weight: bold; padding: 0.6em 1.5em; background-image: linear-gradient(45deg, var(--aa-green-darker) 0%, var(--aa-green) 50%, var(--aa-green-darker) 100%); background-size: 200% auto; color: var(--aa-white); border: none; border-radius: 9999px; cursor: pointer; box-shadow: 0 4px 12px rgba(22, 176, 151, 0.3), 0 1.5px 3px -1.5px var(--aa-green-darker) inset; transition: all 0.4s ease-out; outline: none; margin-top: 1.2em; margin-bottom: 1.2em; text-transform: uppercase; letter-spacing: 0.07em; position: relative; overflow: hidden; }
+        .btn-iniciar:hover { background-position: right center; transform: scale(1.08) translateY(-3px); box-shadow: 0 6px 16px rgba(22, 176, 151, 0.4), 0 1.5px 3px -1.5px var(--aa-green) inset, 0 0 12px var(--aa-green-lighter); }
+        html[data-theme='dark'] .btn-iniciar { background-image: linear-gradient(45deg, var(--aa-green) 0%, var(--aa-green-lighter) 50%, var(--aa-green) 100%); color: var(--aa-dark-blue); box-shadow: 0 4px 12px rgba(22, 176, 151, 0.4), 0 1.5px 3px -1.5px var(--aa-green) inset; }
+        html[data-theme='dark'] .btn-iniciar:hover { color: var(--aa-dark-blue); box-shadow: 0 6px 16px rgba(22, 176, 151, 0.5), 0 1.5px 3px -1.5px var(--aa-green-darker) inset, 0 0 16px var(--aa-green); }
+        .btn-iniciar svg { width: 1.2em; height: 1.2em; transition: transform 0.4s ease; }
+        .btn-iniciar:hover svg { transform: rotate(15deg) scale(1.15) translateX(2.5px); } 
+        
+        .capa-social-links { margin-top: 1.2rem; display: flex; gap: 1rem; justify-content: center; align-items: center; } 
+        .capa-social-links a { 
+            color: var(--aa-white); 
+            font-size: 1.1rem; 
+            transition: all var(--transition-main);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(45deg, var(--aa-green), var(--aa-green-darker));
+            box-shadow: var(--shadow-md);
+        }
+        .capa-social-links a:hover { 
+            background-image: linear-gradient(45deg, var(--arremaq-orange), var(--arremaq-orange-darker));
+            transform: scale(1.15) rotate(-10deg); 
+            box-shadow: var(--shadow-lg);
+        }
+        html[data-theme='dark'] .capa-social-links a { 
+             background-image: linear-gradient(45deg, var(--aa-green-text-dark-theme), var(--aa-green));
+             color: var(--aa-dark-blue);
+        }
+        html[data-theme='dark'] .capa-social-links a:hover {
+            background-image: linear-gradient(45deg, var(--arremaq-orange-text-dark-theme), var(--arremaq-orange-darker));
+            color: var(--aa-white);
+        }
+
+        /* * =============================================
+         * Main Menu Section Styles
+         * =============================================
+         */
+        .menu-principal-section { min-height: 100vh; padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 2rem); text-align: center; background-color: var(--bg-cards-section-light); }
+        html[data-theme='dark'] .menu-principal-section { background-color: var(--bg-cards-section-dark); }
+        .menu-principal-title { font-family: var(--font-headings-cover); font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 800; color: var(--text-headings-light-portal); margin-bottom: 2.5rem; line-height: 1.3; text-transform: uppercase; }
+        html[data-theme='dark'] .menu-principal-title { color: var(--text-headings-dark-portal); }
+        
+        .menu-card { background-color: var(--bg-content-light-portal); border-radius: var(--radius-xl); padding: 2rem 1.5rem; box-shadow: var(--shadow-lg); transition: all var(--transition-main); border: 1px solid var(--border-color-light-portal); display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; height: 100%; min-height: 280px; justify-content: center; }
+        .menu-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: var(--shadow-xl); border-color: var(--aa-green); }
+        html[data-theme='dark'] .menu-card { background-color: var(--bg-content-dark-portal); border-color: var(--border-color-dark-portal); }
+        html[data-theme='dark'] .menu-card:hover { border-color: var(--aa-green-lighter); }
+        
+        .menu-card-icon { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1; }
+        .menu-card-title { font-family: var(--font-headings-cover); font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-headings-light-portal); line-height: 1.4; }
+        html[data-theme='dark'] .menu-card-title { color: var(--text-headings-dark-portal); }
+        
+        /* * =============================================
+         * Playbook Index Section Styles
+         * =============================================
+         */
+        .manual-pitstop-detalhes-section { background-color: var(--bg-main-light); color: var(--text-body-light-portal); padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 2rem); min-height: 100vh; }
+        html[data-theme='dark'] .manual-pitstop-detalhes-section { background-color: var(--bg-main-dark); color: var(--text-body-dark-portal); }
+        .manual-pitstop-main-title { font-family: var(--font-headings-portal); font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: var(--text-headings-light-portal); text-align: center; margin-bottom: 2rem; text-transform: uppercase; }
+        html[data-theme='dark'] .manual-pitstop-main-title { color: var(--text-headings-dark-portal); }
+        
+        #playbookIndexContainer .index-item-card { background-color: var(--bg-content-light-portal); border: 2px solid var(--border-color-light-portal); border-left: 5px solid var(--aa-green); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-md); transition: all var(--transition-main); cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; min-height: 220px; justify-content: flex-start; }
+        #playbookIndexContainer .index-item-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: var(--shadow-xl); border-left-color: var(--arremaq-orange); border-color: var(--arremaq-orange); }
+        html[data-theme='dark'] #playbookIndexContainer .index-item-card { background-color: var(--bg-content-dark-portal); border-color: var(--border-color-dark-portal); border-left-color: var(--aa-green-lighter); }
+        html[data-theme='dark'] #playbookIndexContainer .index-item-card:hover { border-left-color: var(--arremaq-orange-lighter); border-color: var(--arremaq-orange-lighter); }
+        
+        #playbookIndexContainer .index-item-emoji { font-size: 2.2rem; margin-bottom: 1rem; line-height: 1; }
+        .emoji-autoarremate-color { color: var(--aa-green-darker) !important; } 
+        html[data-theme='dark'] .emoji-autoarremate-color { color: var(--aa-green-text-dark-theme) !important; }
+        .emoji-arremaq-color { color: var(--arremaq-orange-darker) !important; } 
+        html[data-theme='dark'] .emoji-arremaq-color { color: var(--arremaq-orange-text-dark-theme) !important; }
+        
+        #playbookIndexContainer .index-item-title { font-family: var(--font-headings-portal); font-weight: 700; font-size: 0.9rem; margin-bottom: 0.75rem; color: var(--text-headings-light-portal); line-height: 1.3; }
+        #playbookIndexContainer .index-item-title strong { text-transform: uppercase; font-weight: 800; display: block; }
+        html[data-theme='dark'] #playbookIndexContainer .index-item-title { color: var(--text-headings-dark-portal); }
+        
+        #playbookIndexContainer .index-item-sub { font-family: var(--font-primary-portal); font-size: 0.7rem; color: var(--text-muted-light-portal); line-height: 1.5; margin-top: auto; padding-top: 0.5rem; }
+        html[data-theme='dark'] #playbookIndexContainer .index-item-sub { color: var(--text-muted-dark-portal); }
+        #playbookIndexContainer .index-item-sub .sentence-emoji { margin-right: 0.3em; color: var(--aa-green); }
+        html[data-theme='dark'] #playbookIndexContainer .index-item-sub .sentence-emoji { color: var(--aa-green-lighter); }
+
+        /* General Content Section Styles (for sections linked from indices) */
+        .playbook-sub-section { padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 2rem); background-color: var(--bg-main-light); min-height: 100vh; }
+        html[data-theme='dark'] .playbook-sub-section { background-color: var(--bg-main-dark); }
+        
+        /* Utility Buttons */
+        .btn-voltar-secao { display: inline-flex; align-items: center; font-family: var(--font-headings-cover); font-weight: 600; padding: 0.6rem 1.2rem; border-radius: var(--radius-button-portal); text-decoration: none; transition: all var(--transition-main); border: 2px solid var(--aa-green); background-color: transparent; color: var(--aa-green-darker); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2rem; }
+        .btn-voltar-secao:hover { background-color: var(--aa-green-lighter); border-color: var(--aa-green-darker); transform: translateY(-2px); color: var(--aa-green-darker); }
+        html[data-theme='dark'] .btn-voltar-secao { border-color: var(--aa-green-lighter); color: var(--aa-green-lighter); }
+        html[data-theme='dark'] .btn-voltar-secao:hover { background-color: var(--aa-green-darker); border-color: var(--aa-green-lighter); color: var(--aa-white); }
+        .btn-voltar-secao i { margin-right: 0.5rem; }
+
+        /* * =============================================
+         * Accessibility & Theme Toggle Styles
+         * =============================================
+         */
+        .theme-toggle-button { position: fixed; bottom: 20px; right: 20px; background-image: linear-gradient(45deg, var(--aa-dark-blue), #2c3e50); color: var(--aa-white); border: 1px solid var(--border-color-dark-portal); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; box-shadow: var(--shadow-lg); z-index: 1000; transition: all var(--transition-main); }
+        .theme-toggle-button:hover { transform: scale(1.1); color: var(--aa-green-lighter); box-shadow: 0 0 15px var(--aa-green-lighter); }
+        html[data-theme='dark'] .theme-toggle-button { background-image: linear-gradient(45deg, var(--aa-green-lighter), var(--aa-green)); color: var(--aa-dark-blue); }
+        
+        .accessibility-controls { position: fixed; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1001; }
+        .accessibility-btn { background-color: var(--bg-content-light-portal); color: var(--text-headings-light-portal); border: 1px solid var(--border-color-light-portal); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; box-shadow: var(--shadow-md); transition: all var(--transition-main); background-image: linear-gradient(45deg, white, #e5e7eb); }
+        .accessibility-btn:hover { transform: scale(1.1); color: var(--aa-green); box-shadow: var(--shadow-lg); }
+        html[data-theme='dark'] .accessibility-btn { background-image: linear-gradient(45deg, #475569, #334155); color: var(--text-headings-dark-portal); border-color: var(--border-color-dark-portal); }
+        html[data-theme='dark'] .accessibility-btn:hover { color: var(--aa-green-lighter); }
+
+        /* * =============================================
+         * Responsive Design
+         * =============================================
+         */
+        @media (max-width: 1024px) { 
+            .menu-principal-section .grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            #playbookIndexContainer.grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 768px) {
+            html { font-size: 84%; } 
+            .capa-title { font-size: clamp(1.0rem, 2.2vw, 1.3rem); } 
+            .frase-destaque { font-size: clamp(0.6rem, 1.3vw, 0.8rem); max-width: 95%;}
+            .playbook-logo { width: 148px; } 
+            .accessibility-controls { top: 10px; right: 10px; gap: 8px;}
+            .accessibility-btn { width: 40px; height: 40px; font-size: 1.1rem;}
+            .menu-principal-title { font-size: clamp(1.1rem, 2.8vw, 1.7rem); }
+            .menu-card { padding: 1.5rem 1rem; min-height: 240px; }
+            .manual-pitstop-main-title { font-size: clamp(1.2rem, 2.8vw, 1.7rem); }
+            #playbookIndexContainer.grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            #playbookIndexContainer .index-item-card { min-height: 180px; }
+        }
+        @media (max-width: 640px) { 
+             .menu-principal-section .grid-cols-4, .menu-principal-section .grid-cols-2 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+             #playbookIndexContainer.grid-cols-4, #playbookIndexContainer.grid-cols-2, #playbookIndexContainer.grid-cols-3 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        }
+        @media (max-width: 480px) {
+            html { font-size: 77%; } 
+            .playbook-logo { width: 116px; } 
+            .btn-iniciar { font-size: 0.7rem; padding: 0.5em 1.1em; }
+            .capa-title { font-size: clamp(0.9rem, 2.5vw, 1.2rem); line-height: 1.5;} 
+            .frase-destaque { font-size: clamp(0.6rem, 1.2vw, 0.75rem); }
+            .menu-principal-title { font-size: clamp(1rem, 2.8vw, 1.5rem); }
+            .manual-pitstop-main-title { font-size: clamp(1.1rem, 2.8vw, 1.5rem); }
+            .menu-card { min-height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Accessibility Controls -->
+    <div class="accessibility-controls">
+        <button id="increaseFontBtn" class="accessibility-btn" aria-label="Aumentar tamanho da fonte" title="Aumentar Fonte">
+            <i class="fas fa-search-plus"></i>
+        </button>
+        <button id="decreaseFontBtn" class="accessibility-btn" aria-label="Diminuir tamanho da fonte" title="Diminuir Fonte">
+            <i class="fas fa-search-minus"></i>
+        </button>
+        <button id="readPageBtn" class="accessibility-btn" aria-label="Ler página em voz alta" title="Ler Página">
+            <i class="fas fa-volume-up"></i>
+        </button>
+    </div>
+
+    <main id="main-portal-completo">
+        <!-- 
+         * =============================================
+         * Section 1: Cover Page
+         * =============================================
+         -->
+        <section id="capa-section" class="capa-section" data-aos="fade-in" data-aos-duration="1000">
+            <div class="logos-container">
+                <img src="https://www.autoarremate.com.br/wp-content/uploads/2022/09/logo-horizontal-padrao.svg" alt="Logotipo da Auto Arremate" class="playbook-logo" data-aos="zoom-in" data-aos-delay="200" onerror="this.onerror=null; this.src='https://placehold.co/192x54/ffffff/16B097?text=Auto+Arremate&font=manrope'; this.alt='Logotipo Auto Arremate Indisponível';">
+                <img src="https://www.arremaq.com.br/wp-content/uploads/2021/01/Logotipo-Arremaqsuperbid.png" alt="Logotipo da Arremaq" class="playbook-logo" data-aos="zoom-in" data-aos-delay="300" onerror="this.onerror=null; this.src='https://placehold.co/192x54/ffffff/FF8C00?text=Arremaq&font=manrope'; this.alt='Logotipo Arremaq Indisponível';">
+            </div>
+            <h1 class="capa-title fun-title-effect" data-aos="fade-up" data-aos-delay="400">
+                <span class="capa-title-line"><span class="emoji-original-color">🏎️</span> PLAYBOOK COMERCIAL <span class="emoji-original-color">💨</span></span>
+                <span class="capa-title-line"><span class="emoji-original-color">⚡</span> SEU GUIA RELÂMPAGO <span class="emoji-original-color">💡</span></span>
+                <span class="capa-title-line"><span class="emoji-original-color">🎯</span> PARA UMA PERFORMANCE CAMPEÃ <span class="emoji-original-color">🏁</span></span>
+                <span class="capa-title-line"><span class="emoji-original-color">🏆</span> NA <span class="text-aa-green-darker">AUTO ARREMATE</span> E <span class="text-arremaq-orange-darker">ARREMAQ</span> <span class="emoji-original-color">🏅</span></span>
+            </h1>
+            <p class="frase-destaque frase-destaque-verde fun-frase-effect" data-aos="fade-up" data-aos-delay="600">
+                <span class="emoji">🚀</span> SÓ OS FORTES ACELERAM, MAS APENAS OS SÁBIOS DOMINAM A ARTE DE FREAR! <span class="emoji">🛑</span>
+            </p>
+            <p class="capa-criado" data-aos="fade-up" data-aos-delay="900"> <span class="emoji">✨</span> Criado pelo <span class="emoji">👨‍💻</span> Analista de Operações - <strong class="creator-name">Marcelo do Nascimento</strong> <span class="emoji">🚀</span>
+            </p>
+            <button id="btnIniciarCapa" class="btn-iniciar" data-aos="fade-up" data-aos-delay="1000"> EMBARCAR NESSA CORRIDA ÉPICA!
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 1.2em; height: 1.2em;"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </button>
+            <div class="capa-social-links" data-aos="fade-up" data-aos-delay="1100">
+                 <a href="https://facebook.com/auto-arremate" target="_blank" aria-label="Facebook Auto Arremate"><i class="fab fa-facebook-f"></i></a> 
+                 <a href="https://www.autoarremate.com.br/podcast-dirigindo-vendas/" target="_blank" aria-label="Podcast Dirigindo Vendas" title="Podcast Dirigindo Vendas"><i class="fas fa-podcast"></i></a> 
+                 <a href="https://www.instagram.com/autoarremate/" target="_blank" aria-label="Instagram Auto Arremate"><i class="fab fa-instagram"></i></a> 
+                 <a href="https://www.linkedin.com/company/autoarremate/" target="_blank" aria-label="LinkedIn Auto Arremate"><i class="fab fa-linkedin-in"></i></a> 
+                 <a href="https://wa.me/5511940366065" target="_blank" aria-label="WhatsApp Auto Arremate"><i class="fab fa-whatsapp"></i></a> 
+                 <a href="tel:01640421197" aria-label="Telefone Auto Arremate"><i class="fas fa-phone"></i></a>
+            </div>
+        </section>
+
+        <!-- 
+         * =============================================
+         * Section 2: Main Menu
+         * Initially hidden.
+         * =============================================
+         -->
+        <section id="menu-principal-section" class="menu-principal-section hidden" data-aos="fade-in">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="menu-principal-title" data-aos="fade-down">
+                     <span class="emoji-original-color">🚦</span> CENTRAL DE COMANDO <span class="text-aa-green-darker">AUTO ARREMATE</span> & <span class="text-arremaq-orange-darker">ARREMAQ</span> <span class="emoji-original-color">🛠️</span>
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-10 md:mt-12">
+                    <!-- Card to open Playbook Index -->
+                    <div id="openManualPitStopBtn" class="menu-card" data-aos="fade-up" data-aos-delay="100">
+                        <span class="menu-card-icon"><i class="fas fa-tools text-gray-600 dark:text-gray-400"></i></span>
+                        <h3 class="menu-card-title">
+                            <span class="emoji-original-color">🛠️</span> MANUAL DO PIT STOP <span class="text-aa-green-darker">AAR</span> E <span class="text-arremaq-orange-darker">ARQ</span> ESTRATÉGIAS PARA VENCER! <span class="emoji-original-color">🏁</span>
+                        </h3>
+                    </div>
+                    <!-- Other menu cards (can be linked to other sections) -->
+                    <div class="menu-card" data-aos="fade-up" data-aos-delay="300">
+                        <span class="menu-card-icon"><i class="fas fa-palette text-purple-500 dark:text-purple-400"></i></span>
+                        <h3 class="menu-card-title">
+                           <span class="text-aa-green-darker">🎨</span> BOX DA IDENTIDADE <span class="text-aa-green-darker">AUTO ARREMATE</span>
+                        </h3>
+                    </div>
+                    <div class="menu-card" data-aos="fade-up" data-aos-delay="400">
+                        <span class="menu-card-icon"><i class="fas fa-graduation-cap text-red-500 dark:text-red-400"></i></span>
+                        <h3 class="menu-card-title">
+                           <span class="emoji-original-color">⛽</span> ACADEMIA DE REPASSADORES 3.0
+                        </h3>
+                    </div>
+                </div>
+                <!-- Button to go back to cover -->
+                <button id="backToCoverBtnMenu" class="btn-voltar-secao mt-12 mx-auto">
+                    <i class="fas fa-arrow-left"></i> VOLTAR À CAPA
+                </button>
+            </div>
+        </section>
+
+        <!-- 
+         * =============================================
+         * Section 3: Playbook Index
+         * Initially hidden.
+         * =============================================
+         -->
+        <section id="manual-pitstop-detalhes-section" class="manual-pitstop-detalhes-section hidden" data-aos="fade-in">
+            <div class="container mx-auto">
+                 <!-- Button to go back to main menu -->
+                <button class="btn-voltar-secao backToMenuPrincipalBtn mb-8 text-sm">
+                    <i class="fas fa-arrow-left mr-2"></i> VOLTAR AO MENU PRINCIPAL
+                </button>
+                <h2 class="manual-pitstop-main-title">
+                     <span class="emoji-original-color">🛠️</span> MANUAL DO PIT STOP: GUIA ESTRATÉGICO <span class="emoji-original-color">🏆</span>
+                </h2>
+                <!-- Container where JS will render the index cards -->
+                <div id="playbookIndexContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 py-6">
+                    <!-- Index items will be generated by JavaScript here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Placeholder for a content section that would be shown when an index item is clicked -->
+        <section id="placeholder-content-section" class="playbook-sub-section hidden">
+             <div class="container mx-auto">
+                <button class="btn-voltar-secao backToManualPitStopDetalhesBtn mb-8 text-sm">
+                    <i class="fas fa-arrow-left mr-2"></i> VOLTAR AO MANUAL
+                </button>
+                <h2 id="content-title-placeholder" class="text-2xl font-bold text-center my-8"></h2>
+                <p id="content-paragraph-placeholder" class="text-lg text-center"></p>
+             </div>
+        </section>
+
+    </main>
+
+    <!-- Theme Toggle Button -->
+    <button id="themeToggleBtn" class="theme-toggle-button" aria-label="Alternar tema" title="Alternar Tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Animate on Scroll
+            AOS.init({ duration: 700, once: true, offset: 50 });
+
+            // --- Element Selectors ---
+            const capaSection = document.getElementById('capa-section');
+            const menuPrincipalSection = document.getElementById('menu-principal-section');
+            const manualPitstopDetalhesSection = document.getElementById('manual-pitstop-detalhes-section');
+            const placeholderContentSection = document.getElementById('placeholder-content-section');
+            
+            const btnIniciarCapa = document.getElementById('btnIniciarCapa');
+            const backToCoverBtnMenu = document.getElementById('backToCoverBtnMenu');
+            const openManualPitStopBtn = document.getElementById('openManualPitStopBtn');
+            const backToMenuPrincipalBtns = document.querySelectorAll('.backToMenuPrincipalBtn');
+            const backToManualPitStopDetalhesBtns = document.querySelectorAll('.backToManualPitStopDetalhesBtn');
+
+            /**
+             * Hides all main sections and shows the specified one.
+             * @param {HTMLElement} sectionToShow The section to make visible.
+             */
+            function showSection(sectionToShow) {
+                [capaSection, menuPrincipalSection, manualPitstopDetalhesSection, placeholderContentSection].forEach(s => {
+                    if (s) s.classList.add('hidden');
+                });
+                
+                if (sectionToShow) {
+                    sectionToShow.classList.remove('hidden');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    AOS.refreshHard(); // Re-initialize AOS for new elements
+                }
+            }
+            
+            // --- Navigation Event Listeners ---
+            if (btnIniciarCapa) {
+                btnIniciarCapa.addEventListener('click', (e) => { 
+                    e.preventDefault(); 
+                    showSection(menuPrincipalSection); 
+                });
+            }
+            if (backToCoverBtnMenu) {
+                backToCoverBtnMenu.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    showSection(capaSection);
+                });
+            }
+            if (openManualPitStopBtn) { 
+                openManualPitStopBtn.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    showSection(manualPitstopDetalhesSection); 
+                    renderPlaybookIndex(); 
+                });
+            }
+            backToMenuPrincipalBtns.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showSection(menuPrincipalSection);
+                });
+            });
+            backToManualPitStopDetalhesBtns.forEach(button => {
+                 button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showSection(manualPitstopDetalhesSection);
+                });
+            })
+
+            // --- Playbook Index Data (Updated) ---
+            const indexDataPlaybook = [
+                { emoji: "🛠️", title: "<strong>MANUAL DO PIT STOP AAR E ARQ</strong> ESTRATÉGIAS PARA VENCER!", sub: "Conheça o motor que impulsiona a Auto Arremate & Arremaq: nossa cultura, missão e o time de campeões.", sentenceEmoji: "🏁" },
+                { emoji: "📜", title: "<strong>NOSSA PISTA DE DECOLAGEM</strong>: HISTÓRIA, VALORES E A FORÇA DA EQUIPE AUTO ARREMATE & ARREMAQ!", sub: "Conheça o motor que impulsiona a Auto Arremate & Arremaq: nossa cultura, missão e o time de campeões.", sentenceEmoji: "📜" },
+                { emoji: "<span class='emoji-autoarremate-color'>🚗</span>", title: "<strong>AUTO ARREMATE NA POLE POSITION</strong>: DOMINANDO O UNIVERSO DOS VEÍCULOS LEVES!", sub: "Descubra como nossa plataforma acelera a gestão e venda de veículos leves, da captação à comercialização.", sentenceEmoji: "🏆" },
+                { emoji: "<span class='emoji-arremaq-color'>🚜</span>", title: "<strong>ARREMAQ</strong>: A FORÇA BRUTA DOS GIGANTES DO AGRO E CONSTRUÇÃO!", sub: "Soluções de peso e estratégias robustas para o repasse eficiente de máquinas agrícolas e de construção.", sentenceEmoji: "⚙️" },
+                { emoji: "🎯", title: "<strong>MAPEANDO OS CAMPEÕES</strong>: NOSSOS CLIENTES IDEAIS AUTO ARREMATE & ARREMAQ (ICPS & PERSONAS)!", sub: "Identifique os perfis de clientes com maior potencial e as personas chave para uma abordagem estratégica.", sentenceEmoji: "🌟" },
+                { emoji: "📊", title: "<strong>A JORNADA DO CLIENTE VENCEDOR AUTO ARREMATE & ARREMAQ</strong>: DA PROSPECÇÃO À BANDEIRADA FINAL (ANIMAÇÃO)!", sub: "Visualize a transformação do cliente, da necessidade à solução, através de nossa animação dinâmica.", sentenceEmoji: "🎬" },
+                { emoji: "🚀", title: "<strong>Aceleração Tática Total</strong>", sub: "Seu centro de comando para conectar, qualificar e converter. ✨ Todas as estratégias, para todas as personas, em um só lugar.", sentenceEmoji: "✨" },
+                { emoji: "✍️", title: "<strong>A ARTE DA COMUNICAÇÃO ESTRATÉGICA AUTO ARREMATE & ARREMAQ</strong>: MODELOS QUE CONVERTEM!", sub: "Termos de impacto, orientações e exemplos práticos para uma comunicação persuasiva e eficaz.", sentenceEmoji: "🗣️" },
+                { emoji: "📖", title: "<strong>DICIONÁRIO DOS MESTRES</strong>: GLOSSÁRIO AUTO ARREMATE & ARREMAQ!", sub: "Decifre os termos técnicos e jargões do mercado automotivo e de máquinas para dominar a linguagem do setor.", sentenceEmoji: "📚" },
+                { emoji: "📈", title: "<strong>EVOLUÇÃO CONTÍNUA</strong>: NOSSO PLAYBOOK AUTO ARREMATE & ARREMAQ EM CONSTANTE APERFEIÇOAMENTO!", sub: "Os próximos passos para o desenvolvimento do playbook e o crescimento contínuo da nossa equipe.", sentenceEmoji: "🌌" },
+                { emoji: "📞", title: "<strong>CENTRAL DE COMANDO AUTO ARREMATE & ARREMAQ</strong>: CANAIS DE CONTATO E SUPORTE ÁGIL!", sub: "Acesse nossos canais de suporte dedicados e encontre ajuda rápida para suas dúvidas e desafios.", sentenceEmoji: "🛠️" },
+                { emoji: "🏆", title: "<strong>DESAFIO DOS CAMPEÕES AUTO ARREMATE</strong>: TESTE SEU CONHECIMENTO ESTRATÉGICO!", sub: "Teste sua sabedoria e astúcia em nosso quiz gamificado sobre o playbook e o universo do repasse!", sentenceEmoji: "🏅" },
+                { emoji: "🏎️💨", title: "<strong>GRANDE PRÊMIO AUTO ARREMATE</strong>: ACELERE NO JOGO DO REPASSE!", sub: "Desafie seus limites e rivais em nosso jogo 2D de alta octanagem e torne-se uma lenda da pista digital!", sentenceEmoji: "🏁" }
+            ];
+
+            const playbookIndexContainer = document.getElementById('playbookIndexContainer');
+
+            /**
+             * Renders the playbook index cards into the container.
+             */
+            function renderPlaybookIndex() {
+                if (!playbookIndexContainer) return;
+                playbookIndexContainer.innerHTML = ''; // Clear previous content
+                
+                indexDataPlaybook.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'index-item-card'; 
+                    card.setAttribute('data-aos', 'fade-up');
+                    
+                    let emojiHtml = item.emoji.includes("<span") ? item.emoji : `<span class="emoji-original-color">${item.emoji}</span>`;
+
+                    card.innerHTML = `
+                        <span class="index-item-emoji">${emojiHtml}</span>
+                        <h3 class="index-item-title">${item.title}</h3>
+                        <p class="index-item-sub">
+                            ${item.sentenceEmoji ? `<span class="sentence-emoji emoji-original-color">${item.sentenceEmoji}</span>` : ''}
+                            ${item.sub}
+                        </p>`;
+                    
+                    // Add click listener to show a placeholder content section
+                    card.addEventListener('click', () => {
+                        document.getElementById('content-title-placeholder').innerHTML = item.title;
+                        document.getElementById('content-paragraph-placeholder').innerText = "Conteúdo para esta seção está em desenvolvimento.";
+                        showSection(placeholderContentSection);
+                    });
+                    
+                    playbookIndexContainer.appendChild(card);
+                });
+            }
+            
+            // --- Theme Toggler ---
+            const htmlEl = document.documentElement;
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const moonIcon = '<i class="fas fa-moon"></i>';
+            const sunIcon = '<i class="fas fa-sun"></i>';
+
+            function applyTheme(theme) {
+                htmlEl.setAttribute('data-theme', theme);
+                if (themeToggleBtn) { 
+                    themeToggleBtn.innerHTML = theme === 'dark' ? sunIcon : moonIcon;
+                }
+            }
+            
+            let storedTheme = null;
+            try { storedTheme = localStorage.getItem('theme'); } catch (e) { console.warn("LocalStorage not available for theme persistence.");}
+            const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            applyTheme(storedTheme || preferredTheme); 
+
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    const newTheme = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; 
+                    applyTheme(newTheme); 
+                    try { localStorage.setItem('theme', newTheme); } catch (e) { console.warn("LocalStorage not available for theme persistence."); }
+                });
+            }
+
+            // --- Accessibility: Font Size Controls ---
+            const increaseFontBtn = document.getElementById('increaseFontBtn');
+            const decreaseFontBtn = document.getElementById('decreaseFontBtn');
+            const FONT_STEP_PERCENT = 10; 
+            const MIN_HTML_FONT_PERCENT = 60; 
+            const MAX_HTML_FONT_PERCENT = 140; 
+
+            function getCurrentHtmlFontSizePercent() {
+                const currentSizePx = parseFloat(window.getComputedStyle(htmlEl).fontSize);
+                const browserBaseSizePx = 16; // Standard browser default font size
+                return (currentSizePx / browserBaseSizePx) * 100;
+            }
+
+            if (increaseFontBtn) {
+                increaseFontBtn.addEventListener('click', () => {
+                    let currentPercent = getCurrentHtmlFontSizePercent();
+                    let newPercent = currentPercent + FONT_STEP_PERCENT;
+                    htmlEl.style.fontSize = Math.min(newPercent, MAX_HTML_FONT_PERCENT) + '%';
+                });
+            }
+            if (decreaseFontBtn) {
+                decreaseFontBtn.addEventListener('click', () => {
+                    let currentPercent = getCurrentHtmlFontSizePercent();
+                    let newPercent = currentPercent - FONT_STEP_PERCENT;
+                    htmlEl.style.fontSize = Math.max(newPercent, MIN_HTML_FONT_PERCENT) + '%';
+                });
+            }
+
+            // --- Accessibility: Text-to-Speech ---
+            const readPageBtn = document.getElementById('readPageBtn');
+            const synth = window.speechSynthesis;
+            if (readPageBtn && synth) {
+                readPageBtn.addEventListener('click', () => {
+                    if (synth.speaking) {
+                        synth.cancel();
+                        return;
+                    }
+                    let activeSection = document.querySelector('section:not(.hidden)');
+                    if (!activeSection) return;
+
+                    let textToRead = Array.from(activeSection.querySelectorAll('h1, h2, h3, p, .menu-card-title, .index-item-title, .index-item-sub'))
+                        .map(el => el.textContent.trim())
+                        .join('. ');
+                    
+                    if (!textToRead) return;
+
+                    let utterance = new SpeechSynthesisUtterance(textToRead);
+                    utterance.lang = 'pt-BR';
+                    utterance.onstart = () => { readPageBtn.innerHTML = '<i class="fas fa-stop-circle"></i>'; };
+                    utterance.onend = () => { readPageBtn.innerHTML = '<i class="fas fa-volume-up"></i>'; };
+                    utterance.onerror = () => { readPageBtn.innerHTML = '<i class="fas fa-volume-up"></i>'; };
+                    synth.speak(utterance);
+                });
+            } else if (readPageBtn) {
+                readPageBtn.style.display = 'none'; // Hide button if TTS not supported
+            }
+        });
+    </script>
+</body>
+</html>
